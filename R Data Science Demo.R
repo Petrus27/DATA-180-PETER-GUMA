@@ -23,3 +23,12 @@ palette() # can change the default if you'd like
 # palette("default)
 
 # barplot(sort...)
+
+
+stem(Cars93$weight)
+
+
+stripchart(Cars93$MPG.city,method="stack",pch=16, + cex.axis=1.2,cex.lab=1.2,xlab="Miles per Gallon")
+
+hist(Particulate,cex.lab=1.2,cex.axis=1.2,col="lightgray",breaks=seq(0,7,.5), + xlab="Particulate (g/gal)")
+box()
