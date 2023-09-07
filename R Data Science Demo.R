@@ -25,7 +25,8 @@ palette() # can change the default if you'd like
 # barplot(sort...)
 
 
-stem(Cars93$weight)
+stem(Cars93$Weight)
+ls(Cars93)
 
 
 stripchart(Cars93$MPG.city,method="stack",pch=16, + cex.axis=1.2,cex.lab=1.2,xlab="Miles per Gallon")
