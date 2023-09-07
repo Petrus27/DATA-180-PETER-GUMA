@@ -5,7 +5,7 @@ author:
   name: "Peter Guma"
   email: "gumap@dickinson.edu"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
-output: #
+output: 
   html_document
 ---
 Make sure that you have accepted the hw invitation link, and working with your clone repository.
