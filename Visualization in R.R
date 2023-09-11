@@ -9,16 +9,17 @@ library("MASS")
 
 #1.
 #SET WORKING DIRECTORY TO THE FOLDER WHERE THE DATASET IS
-setwd("D:/Dickinson College Teaching/DATA 180")
+# setwd("D:/Dickinson College Teaching/DATA 180")
+setwd("C:/Users/Peter/Documents/College Documents/DATA 180/Data 180 Peter Guma/DATA-180-PETER-GUMA")
 
 read_excel("particulate data.xlsx") # Always keep in mind file extensions excel = .xlsx or .xls, Comma separated value = .csv
 
 #2.
 # READ DIRECTLY FROM THE FOLDER
-p_data<-read_excel("D:/Dickinson College Teaching/DATA 180/particulate data.xlsx")
+p_data<-read_excel("C:/Users/Peter/Documents/College Documents/DATA 180/Data 180 Peter Guma/DATA-180-PETER-GUMA/particulate data.xlsx")
 
 #3. Read CSV
-p_data_csv = read.csv("D:/Dickinson College Teaching/DATA 180/particulate data.csv")
+p_data_csv = read.csv("C:/Users/Peter/Documents/College Documents/DATA 180/Data 180 Peter Guma/DATA-180-PETER-GUMA/particulate data.csv")
 
 # Create your own dataset.
 
@@ -47,6 +48,7 @@ stripchart(Cars93$Length,method="stack",pch=16,cex.axis=1.2,cex.lab=1.2,xlab="Le
 
 #USING THE JITTER METHOD
 stripchart(Cars93$MPG.city,method="jitter",pch=16,cex.axis=1.2,cex.lab=1.2,xlab="Miles Per Gallon (city)")
+# can replace Cars93$MPG.city with vec
 stripchart(Cars93$Length,method="jitter",pch=16,cex.axis=1.2,cex.lab=1.2,xlab="Length (inches)")
 
 
@@ -62,5 +64,5 @@ box()
 #Letting the software choose for you the width of the classes
 hist(Particulate,breaks=14,col="lightgray",xlab="Particulate (g/gal)",cex.lab=1.2,cex.axis=1.3)
 
-
-
+x=1
+x
