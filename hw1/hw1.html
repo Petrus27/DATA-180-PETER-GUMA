@@ -461,15 +461,35 @@ num_prefer_twitter</code></pre>
 <div id="task-2" class="section level2">
 <h2>Task 2</h2>
 <ol style="list-style-type: lower-alpha">
-<li><p>Create a vector named <code>my_vec</code> that includes all
-integers from 1 to 10 (inclusive).</p></li>
-<li><p>Replace the second element in <code>my_vec</code> with the number
-<code>99</code>.</p></li>
-<li><p>Write a function called <code>my_func</code> that prints
+<li>Create a vector named <code>my_vec</code> that includes all integers
+from 1 to 10 (inclusive).</li>
+</ol>
+<pre class="r"><code>my_vec &lt;- c(1:10)
+# my_vec</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Replace the second element in <code>my_vec</code> with the number
+<code>99</code>.</li>
+</ol>
+<pre class="r"><code>my_vec[2] &lt;- 99
+# my_vec</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Write a function called <code>my_func</code> that prints
 <code>This element is greater than 5!</code> if an element in
 <code>myvec</code> is greater than 5, and
-<code>This element is NOT greater than 5!</code> otherwise.</p></li>
+<code>This element is NOT greater than 5!</code> otherwise.</li>
 </ol>
+<pre class="r"><code>my_func &lt;- function(element_index) {
+  if (my_vec[element_index] &gt; 5) {
+    print(&quot;This element is greater than 5!&quot;)
+  }
+  else {
+    print(&quot;This element is NOT greater than 5!&quot;)
+  }
+}
+# my_func(1)
+# my_func(2)
+# my_func(5)
+# my_func(6)</code></pre>
 </div>
 <div id="task-3" class="section level2">
 <h2>Task 3</h2>
