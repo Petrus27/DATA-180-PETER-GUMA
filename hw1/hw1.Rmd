@@ -106,9 +106,33 @@ my_func <- function(element_index) {
 
 ## Task 3
 a. Write a function named `get_fibonacci` that returns the n'th value in the [fibonacci sequence](https://www.mathsisfun.com/numbers/fibonacci-sequence.html). For example, `get_fibonacci(5)` should return 3; `get_fibonacci(7)` should return 8 and so on. ***Hint:** It is possible to call the same function from inside it. E.g., you can call `get_fibonacci()` from inside `get_fibonacci()`. Like inception!*
+```{r}
+get_fibonacci <- function(n) {
+  # function starts at index position n=1
+  if (n == 1) {
+    return(0)
+  }
+  else if (n == 2) {
+    return(1)
+  }
+  else {
+    # sum two previous values
+    return(get_fibonacci(n-1) + get_fibonacci(n-2))
+  }
+  
+}
+# get_fibonacci(1)
+# get_fibonacci(2)
+# get_fibonacci(3)
+# get_fibonacci(5)
+# get_fibonacci(7)
+# get_fibonacci(10)
+```
 
 b. Using your function in part (a), find and return the 19th value in the fibonacci sequence.
-
+```{r}
+get_fibonacci(19)
+```
 
 <br>
 You are done! 🏁 Don't forget to `commit` and `push` your .Rmd file to your Github clone repository before the due date.
