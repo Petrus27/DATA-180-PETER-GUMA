@@ -37,13 +37,43 @@ a) Store the data below in a data frame object named `my_df`.
 | Gisele | Twitter |
 | Harry | Instagram |
 
+```{r}
+person_vector <- c("Alice", "Bob", "Charlie", "Denise", "Erin", "Frank", "Gisele", "Harry")
+preference_vector <- c("Twitter", "Facebook", "Twitter", "Instagram", "Facebook", "Twitter", "Twitter", "Instagram")
+# factor_preference_vector <- factor(preference_vector)
+# levels(factor_preference_vector)
+my_df <- data.frame(person_vector, preference_vector)
+# my_df
+```
+
 b) What are the dimensions of `my_df`?
+```{r}
+# str(my_df)
+dim(my_df)
+```
+my_df is an 8x2 dataframe. That is, it contains 8 objects of 2 variables, or simply 8 rows and 2 columns.
 
 c) Write R code that counts the total number of users.
+```{r}
+nrow(my_df) # number of users is equivalent to number of rows
+```
+There are 8 total users according to this function.
 
 d) Write R code that counts the total number of users who prefer Twitter.
+```{r}
+# pref_col <- my_df[,2]
+num_prefer_twitter <- nrow(subset(my_df, my_df[2] == "Twitter"))
+num_prefer_twitter
+# twitter_only <- my_df[1][my_df[2] == "Twitter"]
+# twitter_only
+```
+4 users prefer Twitter according to the code above.
 
 e) Write R code that returns what Gisele prefers.
+```{r}
+my_df[7, 2]
+```
+Gisele prefers Twitter.
 
 ## Task 2
 a) Create a vector named `my_vec` that includes all integers from 1 to 10 (inclusive).
