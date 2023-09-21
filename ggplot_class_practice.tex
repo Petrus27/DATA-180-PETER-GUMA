@@ -1,0 +1,586 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Lecture 4 cont: ggplot2},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Lecture 4 cont: ggplot2}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\hypertarget{ggplot2-r-package-for-data-visualization}{%
+\section{ggplot2 R package for Data
+Visualization}\label{ggplot2-r-package-for-data-visualization}}
+
+\begin{itemize}
+\tightlist
+\item
+  ggplot is a function in the
+  \href{https://cran.r-project.org/web/packages/ggplot2/index.html}{ggplot2}
+  package and is based on \textbf{The Grammar of Graphics} by Leland
+  Wilkinson, and the
+  \href{https://cran.r-project.org/web/packages/lattice/index.html}{lattice}
+  package
+\item
+  ggplot is designed to work in a \emph{layered fashion}, starting with
+  a layer showing the raw data then adding layers of annotation and
+  statistical summaries
+\end{itemize}
+
+\hypertarget{ggplot-function}{%
+\subsection{ggplot() function}\label{ggplot-function}}
+
+Let's look at an example \textbf{diamonds} data that comes with the
+\href{https://cran.r-project.org/web/packages/ggplot2/index.html}{ggplot2}
+package. But first, let's load the the package to our session using the
+\textbf{library()} function. If you have not yet installed the ggplot2
+package, you should do this first (you only have to do this once).
+Recall the magic command is: install.packages(``\,``)
+
+Some information about the \textbf{diamonds} dataset :
+
+\begin{itemize}
+\tightlist
+\item
+  \textasciitilde54,000 round diamonds from
+  \url{http://www.diamondse.info/}
+\item
+  Variables:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    carat, colour, clarity, cut
+  \item
+    total depth, table, depth, width, height
+  \item
+    price
+  \end{itemize}
+\item
+  A question of interest: What is the relationship between \emph{carat}
+  and \emph{price}, and how does it depend on other factors?
+\end{itemize}
+
+\hypertarget{data-on-diamonds}{%
+\subsection{Data on diamonds}\label{data-on-diamonds}}
+
+Load the \textbf{diamonds} data set, get the dimensions, and look at the
+first few lines
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(diamonds, }\AttributeTok{package=}\StringTok{"ggplot2"}\NormalTok{)}
+\FunctionTok{dim}\NormalTok{(diamonds)}
+\CommentTok{\# [1] 53940    10}
+\FunctionTok{head}\NormalTok{(diamonds)}
+\CommentTok{\# \# A tibble: 6 x 10}
+\CommentTok{\#   carat cut       color clarity depth table price     x     y     z}
+\CommentTok{\#   \textless{}dbl\textgreater{} \textless{}ord\textgreater{}     \textless{}ord\textgreater{} \textless{}ord\textgreater{}   \textless{}dbl\textgreater{} \textless{}dbl\textgreater{} \textless{}int\textgreater{} \textless{}dbl\textgreater{} \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}}
+\CommentTok{\# 1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43}
+\CommentTok{\# 2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31}
+\CommentTok{\# 3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31}
+\CommentTok{\# 4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63}
+\CommentTok{\# 5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75}
+\CommentTok{\# 6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{refresher-default-r-plot-of-price-versus-carat}{%
+\subsection{Refresher: Default R plot of price versus
+carat}\label{refresher-default-r-plot-of-price-versus-carat}}
+
+Recall using the \emph{default settings} with the \textbf{plot()}
+function
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(diamonds}\SpecialCharTok{$}\NormalTok{carat,diamonds}\SpecialCharTok{$}\NormalTok{price) }\CommentTok{\# x{-}variable first in this notation}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-4-1} 
+
+}
+
+\caption{Here is a caption.}\label{fig:unnamed-chunk-4-1}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# or}
+\FunctionTok{plot}\NormalTok{(price}\SpecialCharTok{\textasciitilde{}}\NormalTok{carat, }\AttributeTok{data=}\NormalTok{diamonds) }\CommentTok{\# an alternative way: this is y against x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-4-2} 
+
+}
+
+\caption{Here is a caption.}\label{fig:unnamed-chunk-4-2}
+\end{figure}
+
+Note: If you want to change the figure size and add a figure caption in
+Rmd, you can specify the fig.height, fig.width, fig.cap options inside
+curly brackets at the beginning of your R code chunk. See the full set
+of options \href{https://rpubs.com/Lingling912/870659}{here} Bonus: If
+you don't want to set the size each time you generate a plot, you can
+insert the options, e.g., fig\_width fig\_height in your YAML chunk at
+the beginning of your Rmd file.
+
+\hypertarget{default-ggplot-price-versus-diamonds}{%
+\subsection{Default ggplot price versus
+diamonds}\label{default-ggplot-price-versus-diamonds}}
+
+Here comes ggplot! Using the \emph{default settings} in
+\textbf{ggplot()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{theme\_set}\NormalTok{(}\FunctionTok{theme\_bw}\NormalTok{())}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{ggplot}\NormalTok{(diamonds, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{carat,}\AttributeTok{y=}\NormalTok{price)) }\SpecialCharTok{+} 
+                          \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
+                          \FunctionTok{labs}\NormalTok{(}\AttributeTok{y =} \StringTok{\textquotesingle{}price $\textquotesingle{}}\NormalTok{, }\AttributeTok{x =} \StringTok{\textquotesingle{}carat value\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-5-1} \end{center}
+
+\hypertarget{at-first-glance}{%
+\subsection{At first glance}\label{at-first-glance}}
+
+\begin{itemize}
+\tightlist
+\item
+  The \emph{default} option in \textbf{ggplot} looks nicer!
+\item
+  \textbf{ggplot}'s syntax looks weird, especially if you're not very
+  familiar with \textbf{lattice}
+\item
+  Note: It is possible to manipulate the \textbf{plot()} options to get
+  a plot similar to ggplot (and maybe even a better one), but that would
+  require a lot of extra coding!!
+\item
+  The ggplot \emph{syntax} also makes plotting more \textbf{structured}
+  and easier to update
+\end{itemize}
+
+\hypertarget{ggplot-syntax}{%
+\subsection{ggplot syntax}\label{ggplot-syntax}}
+
+ggplot(diamonds, aes(x=carat,y=price)) + geom\_point()
+
+\emph{The first component (before the ``+'') calls the ggplot function,
+and the data with x-y varibles. } The second component (after the first
+``+'') tells ggplot what type of plot you want, e.g.,
+geom\_bar/geom\_hist/geom\_boxplot * Possible to add other lines for
+more customization on the plot, e.g., title, label for the axes, etc. **
+\url{https://rkabacoff.github.io/datavis/} a whole book on ggplot2
+customization!!
+
+\hypertarget{geom_boxplot}{%
+\subsection{geom\_boxplot}\label{geom_boxplot}}
+
+Very easy to switch to a boxplot. We can use \textbf{geom\_boxplot} to
+create boxplots when one variable is continuous and the other is a
+factor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diamonds, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{cut,}\AttributeTok{y=}\NormalTok{price)) }\SpecialCharTok{+} \FunctionTok{geom\_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-6-1} \end{center}
+
+\hypertarget{changing-the-aesthetics}{%
+\subsection{Changing the aesthetics}\label{changing-the-aesthetics}}
+
+You can control the aesthetics of each layer, e.g.~\emph{colour},
+\emph{size}, \emph{shape}, \emph{alpha} (opacity) etc.
+\url{https://ggplot2.tidyverse.org/reference/geom_point.html}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diamonds, }\FunctionTok{aes}\NormalTok{(carat, price)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-7-1} \end{center}
+
+\hypertarget{a-few-more-examples}{%
+\subsection{A few more examples}\label{a-few-more-examples}}
+
+Changing the alpha level
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diamonds, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{carat,}\AttributeTok{y=}\NormalTok{price)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-8-1} \end{center}
+
+\hypertarget{a-few-more-examples-1}{%
+\subsection{A few more examples}\label{a-few-more-examples-1}}
+
+Changing the point size
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diamonds, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{carat,}\AttributeTok{y=}\NormalTok{price)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \FloatTok{0.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-9-1} \end{center}
+
+\hypertarget{a-few-more-examples-2}{%
+\subsection{A few more examples}\label{a-few-more-examples-2}}
+
+Changing the shape and the point size
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diamonds, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{carat,}\AttributeTok{y=}\NormalTok{price)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{shape =} \DecValTok{2}\NormalTok{,}\AttributeTok{size=}\FloatTok{0.4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-10-1} \end{center}
+
+\hypertarget{combining-layers}{%
+\subsection{Combining layers}\label{combining-layers}}
+
+The real power of \textbf{ggplot} is its ability to combine layers
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diamonds, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{carat,}\AttributeTok{y=}\NormalTok{price)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \FloatTok{0.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-11-1} \end{center}
+
+\hypertarget{transformations}{%
+\subsection{Transformations}\label{transformations}}
+
+In this case (and many other situations) a log transformation may allow
+for the relationships between variables to be clearer. Can use
+\textbf{coord\_trans()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diamonds, }\FunctionTok{aes}\NormalTok{(carat, price)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
+\FunctionTok{coord\_trans}\NormalTok{(}\AttributeTok{x =} \StringTok{"log10"}\NormalTok{, }\AttributeTok{y =} \StringTok{"log10"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-12-1} \end{center}
+
+\hypertarget{adding-information-for-a-third-variable}{%
+\subsection{Adding information for a third
+variable}\label{adding-information-for-a-third-variable}}
+
+We can color by a \emph{factor} variable (not that it's useful for this
+example!)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diamonds, }\FunctionTok{aes}\NormalTok{(carat, price, }\AttributeTok{colour=}\NormalTok{color)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
+    \FunctionTok{coord\_trans}\NormalTok{(}\AttributeTok{x =} \StringTok{"log10"}\NormalTok{, }\AttributeTok{y =} \StringTok{"log10"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-13-1} \end{center}
+
+Can also color by a \emph{continuous} variable (not really useful for
+this example too, but here it is so you are familiar with the syntax:)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diamonds, }\FunctionTok{aes}\NormalTok{(carat, price, }\AttributeTok{colour=}\NormalTok{depth)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
+    \FunctionTok{coord\_trans}\NormalTok{(}\AttributeTok{x =} \StringTok{"log10"}\NormalTok{, }\AttributeTok{y =} \StringTok{"log10"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-14-1} \end{center}
+
+\hypertarget{conditional-plots}{%
+\subsection{Conditional plots:}\label{conditional-plots}}
+
+In some cases, it may be more useful to get separate plots for each
+category of the third variable, to understand conditional relationships
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diamonds, }\FunctionTok{aes}\NormalTok{(carat, price)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{color, }\AttributeTok{ncol=}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-15-1} \end{center}
+
+Alternatively, you can use \textbf{facet\_grid}, which also allows more
+than 1 conditioning variable (tables of plots)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diamonds, }\FunctionTok{aes}\NormalTok{(carat, price)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+ \FunctionTok{facet\_grid}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{color, }\AttributeTok{labeller=}\NormalTok{label\_both)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-16-1} \end{center}
+
+\hypertarget{a-final-note-about-syntax}{%
+\subsection{A final note about syntax}\label{a-final-note-about-syntax}}
+
+There are actually many ways to get the same plot! The following
+commands will produce the same plot:
+
+\begin{itemize}
+\tightlist
+\item
+  ggplot(diamonds, aes(price, carat)) + geom\_point()
+\item
+  ggplot() + geom\_point(aes(price, carat), diamonds)
+\item
+  ggplot(diamonds) + geom\_point(aes(price, carat))
+\item
+  ggplot(diamonds, aes(price)) + geom\_point(aes(y = carat))
+\item
+  ggplot(diamonds, aes(y=carat)) + geom\_point(aes(x = price))
+\end{itemize}
+
+\hypertarget{a-final-summary-of-syntax}{%
+\subsection{A final summary of
+syntax:}\label{a-final-summary-of-syntax}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diamonds) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(price, carat))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-17-1} \end{center}
+
+\hypertarget{histograms}{%
+\subsection{Histograms}\label{histograms}}
+
+Let's make a histogram.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diamonds, }\FunctionTok{aes}\NormalTok{(depth)) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-18-1} \end{center}
+
+Notice the difference in the \textbf{aes} call; \textbf{boxplot} is
+really designed for multiple categories!
+
+\hypertarget{histograms-1}{%
+\subsection{Histograms}\label{histograms-1}}
+
+Tthe \emph{default options} in \textbf{histogram} may not be sensible,
+and you often need to adjust the \textbf{binwidth} and \textbf{xlim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diamonds, }\FunctionTok{aes}\NormalTok{(depth)) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth=}\FloatTok{0.2}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlim}\NormalTok{(}\DecValTok{56}\NormalTok{,}\DecValTok{67}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-19-1} \end{center}
+
+\hypertarget{boxplots-with-multiple-categories}{%
+\subsection{Boxplots with multiple
+categories}\label{boxplots-with-multiple-categories}}
+
+A better use of \textbf{boxplot} is when we want to compare
+distributions of a quantitative variable across categories of a factor
+variable, as previously discussed
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diamonds, }\FunctionTok{aes}\NormalTok{(cut, depth)) }\SpecialCharTok{+} \FunctionTok{geom\_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-20-1} \end{center}
+
+\hypertarget{histograms-with-multiple-categories}{%
+\subsection{Histograms with multiple
+categories}\label{histograms-with-multiple-categories}}
+
+We can also get multiple histograms, though we need to either display
+them separately (less useful when comparing)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diamonds, }\FunctionTok{aes}\NormalTok{(depth)) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth =} \FloatTok{0.2}\NormalTok{) }\SpecialCharTok{+} 
+    \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{cut) }\SpecialCharTok{+} \FunctionTok{xlim}\NormalTok{(}\DecValTok{56}\NormalTok{, }\DecValTok{67}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-21-1} \end{center}
+
+\hypertarget{overlaying-histograms}{%
+\subsection{Overlaying Histograms}\label{overlaying-histograms}}
+
+Or, you can overlay the historgrams
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diamonds, }\FunctionTok{aes}\NormalTok{(depth, }\AttributeTok{fill=}\NormalTok{cut)) }\SpecialCharTok{+} 
+    \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth=}\FloatTok{0.2}\NormalTok{,}\AttributeTok{colour=}\StringTok{"grey50"}\NormalTok{,}\AttributeTok{alpha=}\NormalTok{.}\DecValTok{4}\NormalTok{,}\AttributeTok{position=}\StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlim}\NormalTok{(}\DecValTok{56}\NormalTok{,}\DecValTok{67}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-22-1} \end{center}
+
+\hypertarget{cheat-sheet}{%
+\subsection{Cheat sheet}\label{cheat-sheet}}
+
+We are covering only a few of the many plot types that can be greated
+with the \textbf{ggplot2} package.
+
+For a more comprehensive view of ggplot2, take a look at the ggplot2
+\href{https://r4ds.had.co.nz/data-visualisation.html}{Cheat sheet}
+
+\hypertarget{maps}{%
+\subsection{Maps}\label{maps}}
+
+\hypertarget{load-united-states-state-map-data}{%
+\subsubsection{load United States state map
+data}\label{load-united-states-state-map-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#install.packages(\textquotesingle{}maps\textquotesingle{}) \# you only need to do this once. maps package includes various maps that we can use.}
+\CommentTok{\#install.packages(\textquotesingle{}sf\textquotesingle{}) \# you only need to do this once}
+\FunctionTok{library}\NormalTok{(maps)     }\CommentTok{\# Provides latitude and longitude data for various maps}
+\FunctionTok{library}\NormalTok{(sf)}
+\CommentTok{\# read the state population data}
+\NormalTok{MainStates }\OtherTok{\textless{}{-}} \FunctionTok{map\_data}\NormalTok{(}\StringTok{"state"}\NormalTok{)}
+
+\CommentTok{\#plot all states with ggplot2, using black borders and light blue fill}
+\FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{geom\_polygon}\NormalTok{( }\AttributeTok{data=}\NormalTok{MainStates, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{long, }\AttributeTok{y=}\NormalTok{lat, }\AttributeTok{group=}\NormalTok{group),}
+                \AttributeTok{color=}\StringTok{"black"}\NormalTok{, }\AttributeTok{fill=}\StringTok{"lightblue"}\NormalTok{ ) }\SpecialCharTok{+}
+                \FunctionTok{coord\_sf}\NormalTok{(}\AttributeTok{crs =} \FunctionTok{st\_crs}\NormalTok{(}\DecValTok{4326}\NormalTok{)) }\CommentTok{\# projection}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{ggplot_class_practice_files/figure-latex/unnamed-chunk-23-1} \end{center}
+
+\end{document}
