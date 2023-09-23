@@ -37,11 +37,12 @@ head(Cars93)
 ## Task 1
 a) Create a Frequency table and Relative Frequency table (latter uses percentages) for the variable `Type`. Make sure to round all digits to 3 digits.
 ```{r}
-
+table(Cars93$Type) # frequency
+round(table(Cars93$Type)/nrow(Cars93), 3) # relative frequency
 ```
 b) Create a frequency bar graph for the variable `Type`. You can have count on the y axis.
 ```{r}
-
+barplot(table(Cars93$Type), ylab="Count", cex.lab=1.2, cex.names=1.2, cex.axis=1.2, col=c(2,3,4,5,6,7), xlab = "Type of Car", main="Frequency by Type of 93 Cars on Sale in the USA in 1993", space=1.8)
 ```
 
 *	Your axes should be labeled and legible
@@ -51,7 +52,7 @@ b) Create a frequency bar graph for the variable `Type`. You can have count on t
 
 c) Create a pie chart of the variable `Type`.
 ```{r}
-
+pie(table(Cars93$Type), main="Frequency by Type of 93 Cars on Sale in the USA in 1993", cex=1.2)
 ```
 
 * The plot should include a title using the main argument.
@@ -59,11 +60,12 @@ c) Create a pie chart of the variable `Type`.
 
 d) What is the mode of the variable `Type`? Comment.
 
+The mode of the variable `Type` is "Midsize". That is, that type of car shows up most frequently in the dataset.
 
 ## Task 2 
 a) Create a histogram of the variable `Horsepower`.
 ```{r}
-
+hist(Cars93$Horsepower, col=2, xlab="Horsepower", cex.lab=1.2, cex.axis=1.2, main="Frequency by Horsepower of 93 Cars on Sale in the USA in 1993")
 ```
 
 *	Your axes should be labeled
