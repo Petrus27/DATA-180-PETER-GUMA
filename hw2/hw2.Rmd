@@ -65,7 +65,8 @@ The mode of the variable `Type` is "Midsize". That is, that type of car shows up
 ## Task 2 
 a) Create a histogram of the variable `Horsepower`.
 ```{r}
-hist(Cars93$Horsepower, col=2, xlab="Horsepower", cex.lab=1.2, cex.axis=1.2, main="Frequency by Horsepower of 93 Cars on Sale in the USA in 1993")
+hist(Cars93$Horsepower, col=2, xlab="Horsepower (maximum)", cex.lab=1.2, cex.axis=1.2, main="Frequency by Horsepower of 93 Cars on Sale in the USA in 1993")
+# cex.names came up as being a non-graphical parameter, so I couldn't specify it
 ```
 
 *	Your axes should be labeled
@@ -75,42 +76,46 @@ hist(Cars93$Horsepower, col=2, xlab="Horsepower", cex.lab=1.2, cex.axis=1.2, mai
 
 b) Create a second histogram with breaks at 25 HP increments instead of 50.
 ```{r}
-
+hist(Cars93$Horsepower, col=2, xlab="Horsepower (maximum)", cex.lab=1.2, cex.axis=1.2, main="Frequency by Horsepower of 93 Cars on Sale in the USA in 1993", breaks=25)
 ```
 
 * Use the breaks argument to define the classes
 * Other setting should be as in part (a)
 
 c) Which histogram more closely follows or rule of thumb for the suggested number of classes? Explain.
-```{r}
 
-```
-
+The second histogram more closely follows our rule of thumb for the suggested number of classes because 25 is closer than five to √n, where n is the range (max-min). In this case, √n is about 15.8. Our audience would miss some crucial information about how the values are distributed with only five classes, namely that four or five ten-horsepower intervals contain most of the cars. While five classes may be more visually appealing, 25 is more informative.
 
 ## Task 3 
 a) What is the type of variable `Passengers`? (Categorical nominal/ordinal or Numerical discrete/continuous?) What happens if we were to make a histogram for `Passengers`? What is the problem with this graph?
 ```{r}
-
+class(Cars93$Passengers)
+hist(Cars93$Passengers)
 ```
+The variable `Passengers` is numerical discrete. If we were to make a histogram for `Passengers`, every data point would be on the border between classes because they are all positive integers. Histograms are meant for continuous data, not discrete. It would be very difficult to tell, for instance, what is causing the class between 4 and 5 passengers to be so large. The mode is hence ambiguous.
 
 b) Correct the problem in part (a) by creating a more appropriate visualization. Make sure to label your axes, place a title, choose a custom color as in the previous graphs. (Bonus: use factor() with levels option to display x axis values with no observations on the plot.)
 ```{r}
-
+# is.na(pas_fac)
+pas_fac = as.factor(Cars93$Passengers)
+plot(pas_fac, ylab="Frequency", xlab = "Passenger capacity (in persons)", main="Passenger Capacity of 93 Cars on Sale in the USA in 1993", col=15)
 ```
 
 ## Task 4 
 a) Make a histogram of the variable `Length` (the default breaks are fine). Other aspects of the plot should be as in part (a) in Task 2.
 ```{r}
-
+hist(Cars93$Length, xlab="Length (in inches)", main="Length of 93 Cars on Sale in the USA in 1993", cex.lab=1.2, cex.axis=1.2, col=4)
 ```
 
 b) What is the shape of the distribution?
-
+The distribution is approximately symmetric.
 
 c) Find the mean and median of the variable `Length.` Do these answers meet your expectations from part (b)?
 ```{r}
-
+mean(Cars93$Length)
+median(Cars93$Length)
 ```
+The mean length is 183.2043, and the median is 183. This does meet my expectations from part (b) because these two measures of central tendency are close enough to justify calling the distribution approximately symmetric.
 
 You are done! 🏁 Don't forget to commit and push your .Rmd file to your Github repository before the due date.
 
