@@ -87,7 +87,7 @@ my_vec <- c(1:10)
 b) Replace the second element in `my_vec` with the number `99`.
 ```{r}
 my_vec[2] <- 99
-# my_vec
+ my_vec[3]
 ```
 
 c) Write a function called `my_func` that prints `This element is greater than 5!` if an element in `myvec` is greater than 5, and `This element is NOT greater than 5!` otherwise.
