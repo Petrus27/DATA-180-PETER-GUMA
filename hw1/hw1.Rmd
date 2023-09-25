@@ -8,6 +8,8 @@ date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: 
   html_document
 ---
+This is excellent work Peter. Good job. 20/20
+
 Make sure that you have accepted the hw invitation link, and working with your clone repository.
 
 **Due date:** September 21 beginning of class.
