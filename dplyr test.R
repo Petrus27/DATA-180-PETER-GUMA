@@ -31,3 +31,6 @@ head(Cars93_Ex6)
 
 Cars93_Ex7<-select(filter(Cars93, Type %in% c("Sporty","Compact") & Horsepower >=120), Model,Type,EngineSize,Cylinders,Horsepower,MPG.highway)
 head(Cars93_Ex7)
+
+Cars93_Ex2a <- select(filter(Cars93, Passengers==4), Model, EngineSize)
+head(Cars93_Ex2a)

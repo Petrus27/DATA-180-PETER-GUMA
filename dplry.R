@@ -29,10 +29,11 @@ Cars93_Ex7<-select(filter(Cars93, Type %in% c("Sporty","Compact") & Horsepower >
 Cars93_Ex7<-select(filter(Cars93, Type %in% c("Sporty","Compact") & Horsepower >=120),
             Model,Type,EngineSize,Cylinders,Horsepower,MPG.highway)
 head(Cars93_Ex7)
+table(Cars93$Type)
 
 # Mutate function.
 Cars93_Ex9<-select(mutate(Cars93,HPpLiter=Horsepower/EngineSize),Model,Type,EngineSize,Cylinders,Horsepower,MPG.highway,HPpLiter)
-
+head(Cars93_Ex9)
 
 # Equivalent pipeline
 Cars93_Ex9<-Cars93 %>%mutate(HPpLiter=Horsepower/EngineSize) %>%select(Model,Type,EngineSize,Cylinders,Horsepower,MPG.highway,HPpLiter)
