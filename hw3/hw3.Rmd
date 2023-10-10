@@ -40,7 +40,7 @@ Create a simple scatterplot using ggplot2 where x axis shows `EngineSize`, y axi
 
  
 ```{r}
-ggplot(Cars93, aes(EngineSize, MPG.city)) + geom_point(size=2,col="blue") + xlim(1,6) + ylim(10,50) + labs(title = "The Relationship Between Engine Size and City MPG", subtitle="For 93 Cars on Sale in the USA in 1993") + xlab("Engine Size") + ylab("City MPG")
+ggplot(Cars93, aes(EngineSize, MPG.city)) + geom_point(size=2,col="blue") + xlim(1,6) + ylim(10,50) + labs(title = "The Relationship Between Engine Size and City MPG", subtitle="For 93 Cars on Sale in the USA in 1993", caption = "Figure 1") + xlab("Engine Size") + ylab("City MPG")
 ```
 
 ## Task 2
@@ -48,7 +48,7 @@ Recreate the scatterplot in Task 1. Add the following functionality:
 
 * Use a different color for each car `Type`.
 ```{r}
-ggplot(Cars93, aes(EngineSize, MPG.city)) + geom_point(size=2,col=1:length(Cars93$Type)) + xlim(1,6) + ylim(10,50) + labs(title = "The Relationship Between Engine Size and City MPG", subtitle="For 93 Cars on Sale in the USA in 1993") + xlab("Engine Size") + ylab("City MPG")
+ggplot(Cars93, aes(EngineSize, MPG.city)) + geom_point(size=2,col=1:length(Cars93$Type)) + xlim(1,6) + ylim(10,50) + labs(title = "The Relationship Between Engine Size and City MPG", subtitle="For 93 Cars on Sale in the USA in 1993", caption = "Figure 2") + xlab("Engine Size") + ylab("City MPG")
 ```
 
 ## Task 3
@@ -58,7 +58,7 @@ Recreate the scatterplot in Task 2. Add the following functionality:
 * Make the curve line red, and dashed. (Hint linetype is the option you can use to set line style as 'dashed')
 
 ```{r}
-ggplot(Cars93, aes(EngineSize, MPG.city)) + geom_point(size=2,col=1:length(Cars93$Type)) + xlim(1,6) + ylim(10,50) + labs(title = "The Relationship Between Engine Size and City MPG", subtitle="For 93 Cars on Sale in the USA in 1993") + xlab("Engine Size") + ylab("City MPG") + geom_smooth(col="red", linetype = "dashed")
+ggplot(Cars93, aes(EngineSize, MPG.city)) + geom_point(size=2,col=1:length(Cars93$Type)) + xlim(1,6) + ylim(10,50) + labs(title = "The Relationship Between Engine Size and City MPG", subtitle="For 93 Cars on Sale in the USA in 1993", caption = "Figure 3") + xlab("Engine Size") + ylab("City MPG") + geom_smooth(col="red", linetype = "dashed")
 ```
 
 ## Task 4
@@ -69,7 +69,7 @@ Create a barplot showing count of cars by `AirBags` using ggplot2.
 * Add a title, subtitle, x axis label, y axis label, and a caption using title, subtitle, caption options inside `+ labs()`.
 
 ```{r}
-
+ggplot(Cars93) + geom_bar(aes(x=AirBags), col=c(2,3,4), fill=c(2,3,4), stat="count") + labs(title = "The Count of Cars by Type of Air Bag", subtitle="For 93 Cars on Sale in the USA in 1993", caption = "Figure 4") + xlab("Type of Air Bag") + ylab("Count")
 ```
 
 ## Task 5
@@ -80,7 +80,7 @@ Recreate the barplot in Task 4 for different car `Origin`, such that you create 
 * in `geom_bar(), use `position='dodge'` to have the barplots side by side.
 
 ```{r}
-
+ggplot(Cars93) + geom_bar(aes(x=Origin), col=c("lightblue2","lightgreen"), fill=c("lightblue2","lightgreen"), stat="count", position='dodge') + labs(title = "The Count of the Car `Origin` by Type of Air Bag", subtitle="For 93 Cars on Sale in the USA in 1993", caption = "Figure 5") + xlab("Type of Air Bag") + ylab("Count")
 ```
 
 # Maps
