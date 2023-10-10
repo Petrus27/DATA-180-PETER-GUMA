@@ -101,13 +101,13 @@ Notice that `NAME` includes the name of a state, `geometry` includes spatial coo
 ## Task 1
 Create a map of Australia using `ggplot2`.
 ```{r}
-
+ggplot(au_states) + geom_sf(aes())
 ```
 
 ## Task 2
 Modify your map such that each state is displayed with a different color. (Hint: use the fill option as an aes setting with variable `NAME`.)
 ```{r}
-
+ggplot(au_states) + geom_sf(aes(), col=1:length(au_states$NAME), fill=1:length(au_states$NAME))
 ```
 ## Task 3
 Read in the capital city dataframe showing each capital and its latitude and longitude information by running:
