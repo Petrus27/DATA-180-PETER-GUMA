@@ -81,6 +81,7 @@ Recreate the barplot in Task 4 for different car `Origin`, such that you create 
 
 ```{r}
 ggplot(Cars93) + geom_bar(aes(x=Origin), col=c("lightblue2","lightgreen"), fill=c("lightblue2","lightgreen"), stat="count", position='dodge') + labs(title = "The Count of the Car `Origin` by Type of Air Bag", subtitle="For 93 Cars on Sale in the USA in 1993", caption = "Figure 5") + xlab("Type of Air Bag") + ylab("Count")
+# I have no idea how fill=AirBags works; manually was easier
 ```
 
 # Maps
@@ -138,20 +139,20 @@ ggplot(au_states) + geom_sf(aes(), col=1:length(au_states$NAME), fill=1:length(a
 ## Task 4
 Let's take a look at a different projection output. Change your map's projection to epsg 3112 by adding `+ coord_sf()`. Recall the option that goes inside `coord_sf()` is `st_crs(4_digit_code)`
 ```{r}
-
+ggplot(au_states) + geom_sf(aes(), col=1:length(au_states$NAME), fill=1:length(au_states$NAME)) + geom_point(aes(), data=au_capitals, y=au_capitals$lat, x=au_capitals$lon, col="red",size=2) + coord_sf(datum=st_crs(3112))
 ```
 
 ## Task 5
 Lastly, let's display the same map using `mapview()`. Load the `mapview` package.
 
 ```{r}
-#install.packages('mapview') # interactive display
+# install.packages('mapview') # interactive display
 library(mapview)
 ```
 Create an interactive map of Australia using `mapview()`
 
 ```{r}
-
+mapview(au_states)
 ```
 
 ## Task 6
@@ -165,7 +166,7 @@ Now add the new spatial capitals object via + (that is, you can use the followin
 * You can use the option `col.regions='red'` to make capitals appear in color red, and `legend=F` in second `mapview()` to remove the uninformative second set of legend. 
 
 ```{r}
-
+mapview(au_states) + mapview(capitals_geo, col.regions='red', legend=F)
 ```
 
 
