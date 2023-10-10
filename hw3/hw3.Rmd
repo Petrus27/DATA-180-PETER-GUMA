@@ -131,7 +131,7 @@ Display the capitals as points on your map from Task 1. (Hint: combine `geom_sf(
 * Use `size=2` to make points larger.
 
 ```{r}
-
+ggplot(au_states) + geom_sf(aes(), col=1:length(au_states$NAME), fill=1:length(au_states$NAME)) + geom_point(aes(), data=au_capitals, y=au_capitals$lat, x=au_capitals$lon, col="red",size=2)
 ```
 
 
