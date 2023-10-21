@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2023-08-24" />
+<meta name="date" content="2023-10-20" />
 
 <title>HW 4: Dplyr</title>
 
@@ -351,10 +351,10 @@ display: none;
 
 <h1 class="title toc-ignore">HW 4: Dplyr</h1>
 <h3 class="subtitle">Data 180, Professor Kennedy</h3>
-<h4 class="author">Your Name</h4>
-<a class="author_email" href="mailto:#"><a href="mailto:XXXX@dickinson.edu" class="email">XXXX@dickinson.edu</a></a>
+<h4 class="author">Peter Guma</h4>
+<a class="author_email" href="mailto:#"><a href="mailto:gumap@dickinson.edu" class="email">gumap@dickinson.edu</a></a>
 </address>
-<h4 class="date">August 24, 2023</h4>
+<h4 class="date">October 20, 2023</h4>
 
 </div>
 
@@ -407,11 +407,39 @@ head(records)</code></pre>
 <p>For the entire data, display the summary statistics (mean, median,
 mode, etc.) using the dplyr function <code>summary()</code> via
 pipe.</p>
+<pre class="r"><code>records %&gt;% summary()</code></pre>
+<pre><code>##     track               type             shortcut            player         
+##  Length:2334        Length:2334        Length:2334        Length:2334       
+##  Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##                                                                             
+##                                                                             
+##                                                                             
+##  system_played          date           time_period             time       
+##  Length:2334        Length:2334        Length:2334        Min.   : 14.59  
+##  Class :character   Class :character   Class :character   1st Qu.: 39.03  
+##  Mode  :character   Mode  :character   Mode  :character   Median : 86.19  
+##                                                           Mean   : 90.62  
+##                                                           3rd Qu.:120.16  
+##                                                           Max.   :375.83  
+##  record_duration 
+##  Min.   :   0.0  
+##  1st Qu.:   6.0  
+##  Median :  51.0  
+##  Mean   : 220.8  
+##  3rd Qu.: 198.8  
+##  Max.   :3659.0</code></pre>
 </div>
 <div id="question-2" class="section level1">
 <h1>Question 2</h1>
 <p>Return the count of cases where a record was broken in more than a
 year (365 days).</p>
+<pre class="r"><code>count &lt;- records %&gt;%
+  filter(record_duration &gt; 365) %&gt;%
+  select(record_duration) %&gt;%
+  nrow()
+count #should return 410</code></pre>
+<pre><code>## [1] 410</code></pre>
 </div>
 <div id="question-3" class="section level1">
 <h1>Question 3</h1>
