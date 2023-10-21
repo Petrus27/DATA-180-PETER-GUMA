@@ -60,14 +60,22 @@ Return name of the player, name of the track, record date, and record duration f
 longest <- max(records$record_duration)
 filter(records, record_duration==longest) %>%
   select(player, track, date, record_duration)
-  
 ```
 
 # Question 4
 Return the mean record time (`time`) by each track. What is the name of the track with the fastest average record time? *Hint: you should use `group_by() and summarize()*
 
 ```{r}
-
+mean_times <- records %>%
+  group_by(track) %>%
+  summarize(mean(time))
+mean_times
+# select(mean_times$`mean(time)` == max(mean_times$`mean(time)`))
+# summarize(mean_times, mean_times$`mean(time)` == max(mean_times))
+# select(filter(mean_times, mean_time == max(mean_times$`mean(time)`)))
+filter(mean_times, mean(time) == min(mean_times$`mean(time)`)) #???
+select(mean_times, track)
+select(mean_times)
 ```
 # Question 5
 Let's get the year from the `date` column and save it as a variable named `year`. You can use the function `substr(date, 1, 4)` which grabs the first 4 digits in the `date` column. Use this expression in `mutate()` to create a `year` column. (Don't forget to save/overwrite the dataframe returned to the original one!)
