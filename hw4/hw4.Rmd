@@ -50,7 +50,6 @@ Return the count of cases where a record was broken in more than a year (365 day
 ```{r}
 count <- records %>%
   filter(record_duration > 365) %>%
-  select(record_duration) %>%
   nrow()
 count #should return 410
 ```
@@ -58,7 +57,10 @@ count #should return 410
 Return name of the player, name of the track, record date, and record duration for the record that took the longest time to be broken.
 
 ```{r}
-
+longest <- max(records$record_duration)
+filter(records, record_duration==longest) %>%
+  select(player, track, date, record_duration)
+  
 ```
 
 # Question 4
