@@ -70,18 +70,32 @@ mean_times <- records %>%
   group_by(track) %>%
   summarize(mean(time))
 mean_times
-# select(mean_times$`mean(time)` == max(mean_times$`mean(time)`))
-# summarize(mean_times, mean_times$`mean(time)` == max(mean_times))
-# select(filter(mean_times, mean_time == max(mean_times$`mean(time)`)))
-filter(mean_times, mean(time) == min(mean_times$`mean(time)`)) #???
-select(mean_times, track)
-select(mean_times)
+
+min_mean_time <- mean_times$`mean(time)` %>%
+  min()
+min_mean_time
+
+# I left in some old code for future reference even though it doesn't work
+ # max_track_by_time <- mean_times %>%
+  # filter(mean_times$mean(time)==max_mean_time)
+ # max_track_by_time 
+ # select(mean_times$`mean(time)` == max(mean_times$`mean(time)`))
+ # summarize(mean_times, mean_times$`mean(time)` == max(mean_times))
+ # select(filter(mean_times, mean_time == max(mean_times$`mean(time)`)))
+ # filter(mean_times, mean(time) == min(mean_times$`mean(time)`)) #???
+ # select(mean_times, track)
+ # select(mean_times)
 ```
+The track with the fastest average record time is Mario Raceway, with a mean of 54.19588 days.
+
 # Question 5
 Let's get the year from the `date` column and save it as a variable named `year`. You can use the function `substr(date, 1, 4)` which grabs the first 4 digits in the `date` column. Use this expression in `mutate()` to create a `year` column. (Don't forget to save/overwrite the dataframe returned to the original one!)
 
 ```{r}
-
+year <- records$date %>%
+ substr(1, 4)
+records <- mutate(records, year)
+records
 ```
 
 # Question 6

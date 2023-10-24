@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2023-10-20" />
+<meta name="date" content="2023-10-24" />
 
 <title>HW 4: Dplyr</title>
 
@@ -354,7 +354,7 @@ display: none;
 <h4 class="author">Peter Guma</h4>
 <a class="author_email" href="mailto:#"><a href="mailto:gumap@dickinson.edu" class="email">gumap@dickinson.edu</a></a>
 </address>
-<h4 class="date">October 20, 2023</h4>
+<h4 class="date">October 24, 2023</h4>
 
 </div>
 
@@ -436,7 +436,6 @@ pipe.</p>
 year (365 days).</p>
 <pre class="r"><code>count &lt;- records %&gt;%
   filter(record_duration &gt; 365) %&gt;%
-  select(record_duration) %&gt;%
   nrow()
 count #should return 410</code></pre>
 <pre><code>## [1] 410</code></pre>
@@ -445,12 +444,56 @@ count #should return 410</code></pre>
 <h1>Question 3</h1>
 <p>Return name of the player, name of the track, record date, and record
 duration for the record that took the longest time to be broken.</p>
+<pre class="r"><code>longest &lt;- max(records$record_duration)
+filter(records, record_duration==longest) %&gt;%
+  select(player, track, date, record_duration)</code></pre>
+<pre><code>##   player        track       date record_duration
+## 1 Alex G Yoshi Valley 2010-11-27            3659</code></pre>
 </div>
 <div id="question-4" class="section level1">
 <h1>Question 4</h1>
 <p>Return the mean record time (<code>time</code>) by each track. What
 is the name of the track with the fastest average record time? <em>Hint:
 you should use `group_by() and summarize()</em></p>
+<pre class="r"><code>mean_times &lt;- records %&gt;%
+  group_by(track) %&gt;%
+  summarize(mean(time))
+mean_times</code></pre>
+<pre><code>## # A tibble: 16 × 2
+##    track                 `mean(time)`
+##    &lt;chr&gt;                        &lt;dbl&gt;
+##  1 Banshee Boardwalk             97.4
+##  2 Bowser&#39;s Castle               96.2
+##  3 Choco Mountain                70.8
+##  4 D.K.&#39;s Jungle Parkway         71.0
+##  5 Frappe Snowland               58.6
+##  6 Kalimari Desert               76.9
+##  7 Koopa Troopa Beach            72.4
+##  8 Luigi Raceway                 74.3
+##  9 Mario Raceway                 54.2
+## 10 Moo Moo Farm                  61.1
+## 11 Rainbow Road                 205. 
+## 12 Royal Raceway                109. 
+## 13 Sherbet Land                  78.1
+## 14 Toad&#39;s Turnpike               98.9
+## 15 Wario Stadium                132. 
+## 16 Yoshi Valley                  55.6</code></pre>
+<pre class="r"><code>min_mean_time &lt;- mean_times$`mean(time)` %&gt;%
+  min()
+min_mean_time</code></pre>
+<pre><code>## [1] 54.19588</code></pre>
+<pre class="r"><code># I left in some old code for future reference even though it doesn&#39;t work
+ # max_track_by_time &lt;- mean_times %&gt;%
+  # filter(mean_times$mean(time)==max_mean_time)
+ # max_track_by_time 
+ # select(mean_times$`mean(time)` == max(mean_times$`mean(time)`))
+ # summarize(mean_times, mean_times$`mean(time)` == max(mean_times))
+ # select(filter(mean_times, mean_time == max(mean_times$`mean(time)`)))
+ # filter(mean_times, mean(time) == min(mean_times$`mean(time)`)) #???
+ # select(mean_times, track)
+ # select(mean_times)</code></pre>
+<p>The track with the fastest average record time is Mario Raceway, with
+a mean of 54.19588 days.</p>
 </div>
 <div id="question-5" class="section level1">
 <h1>Question 5</h1>
