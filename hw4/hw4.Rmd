@@ -116,7 +116,7 @@ mean_times_by_year %>%
  ggplot(aes(year, mean)) + 
  geom_bar(stat='identity')
 ```
-There is a very slight trend upwards in the mean record time, although it varies so much from year to year that any given year could have a much larger or smaller mean than another in the dataset. About one half to two-thirds of the record time data is approximately 90 days. It is worth noting that although the mean for 2021 appears lower than the past ~10 years, these data were released in May of that year, so the end result was likely larger.
+There is a very slight trend upwards in the mean record time, although it varies so much from year to year that any given year could have a noticeably larger or smaller mean than another in the dataset. About one half to two-thirds of the record time data is approximately 90 days. It is worth noting that although the mean for 2021 appears lower than the past ~10 years, these data were released in May 2021, so the end result would likely be larger.
 
 # Question 8
 Create two overlaid histograms by `type` on the same plot where each histogram shows the distribution of `time` for a given track `type`. Combine dplyr and ggplot2 to achieve this. How do record times compare between Single Lap and Three Lap tracks? Hint: use `records %>% dplyr functions %>% ggplot(., aes()) + type of ggplot plot` to combine dpylr with ggplot. Note that the dot inside `ggplot()` is a placeholder for `records`, as dplyr has already pulled `records` df at the beginning of the code (making it unnecessary to type it twice!)
@@ -124,7 +124,11 @@ Create two overlaid histograms by `type` on the same plot where each histogram s
 Note: Set `alpha=.5` for transparency.
 
 ```{r}
-
+records %>%
+  group_by(type) %>% #??
+  ggplot(., aes(track, time)) + 
+  geom_histogram(stat='identity', alpha=.5) +
+  scale_x_discrete(label=function(x) stringr::str_trunc(x,6))
 ```
 
 # Question 9
