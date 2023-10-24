@@ -23,6 +23,7 @@ For the entire assignment, make sure to use dplyr functions only. (no base R!)
 library(dplyr)
 records <- read.csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/records.csv')
 head(records)
+library(ggplot2)
 ```
 
 Here are the variables included and their meanings:
@@ -66,12 +67,12 @@ filter(records, record_duration==longest) %>%
 Return the mean record time (`time`) by each track. What is the name of the track with the fastest average record time? *Hint: you should use `group_by() and summarize()*
 
 ```{r}
-mean_times <- records %>%
+mean_times_by_track <- records %>%
   group_by(track) %>%
   summarize(mean(time))
-mean_times
+mean_times_by_track
 
-min_mean_time <- mean_times$`mean(time)` %>%
+min_mean_time <- mean_times_by_track$`mean(time)` %>%
   min()
 min_mean_time
 
@@ -95,21 +96,27 @@ Let's get the year from the `date` column and save it as a variable named `year`
 year <- records$date %>%
  substr(1, 4)
 records <- mutate(records, year)
-records
+# records #omitted to save space in knit
 ```
 
 # Question 6
 Now get the average record time (`time`) by year.
 
 ```{r}
-
+mean_times_by_year <- records %>%
+  group_by(year) %>%
+  summarize(mean = mean(time))
+mean_times_by_year
 ```
 # Question 7
 Continuing with your results in Question 6: Do you notice a trend across years? Are the record times getting faster, slower, or no clear pattern in time? Create a barplot where each year appears on the x axis (you can treat year as a categorical variable in this case) and y axis showing the mean record time in each year. Interpret your graph. *Hint: Use your code in Question 6, which returns the average record times by year, followed by ` %>% ggplot(aes(year,mean)) + geom_bar(stat='identity')` Hint2: To make your figure wider, you can insert fig.width=10 inside the curly brackets at the beginning of your r code chunk below, as {r, fig.width=10} which I already did for you below,*
 
 ```{r, fig.width=10}
-
+mean_times_by_year %>%
+ ggplot(aes(year, mean)) + 
+ geom_bar(stat='identity')
 ```
+There is a very slight trend upwards in the mean record time, although it varies so much from year to year that any given year could have a much larger or smaller mean than another in the dataset. About one half to two-thirds of the record time data is approximately 90 days. It is worth noting that although the mean for 2021 appears lower than the past ~10 years, these data were released in May of that year, so the end result was likely larger.
 
 # Question 8
 Create two overlaid histograms by `type` on the same plot where each histogram shows the distribution of `time` for a given track `type`. Combine dplyr and ggplot2 to achieve this. How do record times compare between Single Lap and Three Lap tracks? Hint: use `records %>% dplyr functions %>% ggplot(., aes()) + type of ggplot plot` to combine dpylr with ggplot. Note that the dot inside `ggplot()` is a placeholder for `records`, as dplyr has already pulled `records` df at the beginning of the code (making it unnecessary to type it twice!)
