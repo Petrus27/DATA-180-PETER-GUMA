@@ -114,7 +114,7 @@ Continuing with your results in Question 6: Do you notice a trend across years? 
 ```{r, fig.width=10}
 mean_times_by_year %>%
  ggplot(aes(year, mean)) + 
- geom_bar(stat='identity')
+ geom_bar(stat='identity') + labs(title="Mean Record Time by Year")
 ```
 There is a very slight trend upwards in the mean record time, although it varies so much from year to year that any given year could have a noticeably larger or smaller mean than another in the dataset. About one half to two-thirds of the record time data is approximately 90 days. It is worth noting that although the mean for 2021 appears lower than the past ~10 years, these data were released in May 2021, so the end result would likely be larger.
 
@@ -124,12 +124,18 @@ Create two overlaid histograms by `type` on the same plot where each histogram s
 Note: Set `alpha=.5` for transparency.
 
 ```{r}
+#single_laps <- filter(records, type=="Single Lap")
+#three_laps <- filter(records, type=="Three Lap")
 records %>%
-  group_by(type) %>% #??
-  ggplot(., aes(track, time)) + 
-  geom_histogram(stat='identity', alpha=.5) +
-  scale_x_discrete(label=function(x) stringr::str_trunc(x,6))
+  group_by(type) %>%
+  ggplot(., aes(time)) + 
+  geom_histogram(data=filter(records, type=="Single Lap"), aes(fill=type), bins=30, alpha=.5) +
+  geom_histogram(data=filter(records, type=="Three Lap"), aes(fill=type), bins=30, alpha=.5) + scale_fill_manual(name="type", values=c("blue", "red"), labels=c("Single Lap", "Three Lap")) +
+  labs(title="Time Distribution by Type of Track")
+#  geom_histogram(stat='identity', bins=50, alpha=.5) +
+#  scale_x_discrete(label=function(x) stringr::str_trunc(x,10))
 ```
+Record times for Three Lap tracks are typically much longer than those for Single Lap tracks, although their bins do overlap, and the smallest bin on the histogram only contains data from Three Laps. This makes sense because completing more laps usually implies a longer game. Also, Three Lap tracks have a much wider range of observed times, whereas the times for Single Lap tracks are mostly under 100 seconds.
 
 # Question 9
 Three Lap time reports the total time spent finishing three laps in total, as opposed to finishing a single lap. Let's divide all time observations with `type=="Three Lap"` by 3 to check whether **per lap** performance declines across Three Lap vs. Single Lap. Generate a new variable named `time_per` which is the time spent per round, and create two overlaid histograms of `type_per` by `type`. Hint: Use `mutate()`, and inside `mutate()` use `ifelse()` function to conditionally replace rows: e.g.., `ifelse(type=="Three Lap",time/3,time)` which divides `time` by three only if `type=="Three Lap"`.
