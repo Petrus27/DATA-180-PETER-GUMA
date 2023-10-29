@@ -37,9 +37,13 @@ a) Use the filter and select commands to choose only vans from the `Cars93` data
 library(MASS)
 library(dplyr)
 
-
-
+Vans93 <- Cars93 %>%
+  filter(Type=="Van") %>%
+  dplyr::select(Model, Price, EngineSize, Horsepower, MPG.highway, Length)
+print(Vans93)
+nrow(Vans93)
 ```
+Vans93 has 9 objects.
 
 b) Use the `dist` and `as.matrix` functions to find the distance matrix for the vans set using the Euclidean metric. Call this matrix `Vans_Euclidean`. You will need to remove the first column of the `Vans93` dataframe when you pass it into the `dist` function, since the variable `Model` is not an appropriate variable for the cluster variate. You can do this by passing in `Vans93[,-1]` or `Vans93[,2:6]` (or any other way you like), converting it to a matrix and storing it as `Vans_Euclidean`. Next, set the row and column names of `Vans_Euclidean` to the Models of the vans using the rownames and colnames functions, so that it is easier for us to see what object we have in each row/column. Hint: This can be done by typing
 

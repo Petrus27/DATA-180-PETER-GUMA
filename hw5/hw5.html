@@ -426,6 +426,23 @@ library(dplyr)</code></pre>
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>Vans93 &lt;- Cars93 %&gt;%
+  filter(Type==&quot;Van&quot;) %&gt;%
+  dplyr::select(Model, Price, EngineSize, Horsepower, MPG.highway, Length)
+print(Vans93)</code></pre>
+<pre><code>##        Model Price EngineSize Horsepower MPG.highway Length
+## 1 Lumina_APV  16.3        3.8        170          23    178
+## 2      Astro  16.6        4.3        165          20    194
+## 3    Caravan  19.0        3.0        142          21    175
+## 4   Aerostar  19.9        3.0        145          20    176
+## 5        MPV  19.1        3.0        155          24    190
+## 6      Quest  19.1        3.0        151          23    190
+## 7 Silhouette  19.5        3.8        170          23    194
+## 8     Previa  22.7        2.4        138          22    187
+## 9    Eurovan  19.7        2.5        109          21    187</code></pre>
+<pre class="r"><code>nrow(Vans93)</code></pre>
+<pre><code>## [1] 9</code></pre>
+<p>Vans93 has 9 objects.</p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Use the <code>dist</code> and <code>as.matrix</code> functions to
 find the distance matrix for the vans set using the Euclidean metric.
