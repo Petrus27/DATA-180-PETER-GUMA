@@ -21,7 +21,11 @@ print(X)
 
 a) Find the Euclidean distance between the first and second objects. Round the answer to have two decimal points. 
 
+round(dist(X, method="euclidean"), 2)
+
 b) Find the Manhattan distance between the first and third objects. Round the answer to have two decimal points.
+
+round(dist(X, method="manhattan"), 2)
 
 c) Find the Minkowski distance ($\ro$ = 3) between the second and third objects. Round the answer to have two decimal points.  
 
