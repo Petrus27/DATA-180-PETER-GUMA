@@ -29,7 +29,7 @@ The Manhattan distance between the first and third objects is 10.00. Fixing each
 
 c) Find the Minkowski distance ($\ro$ = 3) between the second and third objects. Round the answer to have two decimal points.  
 
-The Minkowski distance between the second and third objects is 5.36. As before, fix each column, take the absolute difference between rows 2 and 3 (|-1-2|,|-2-(-1)|,|4-(-1)|,|2-3|), cube each term(3^3,1^3,5^3,1^3), add everything together to get 154, and take the cube root to get 5.36.
+The Minkowski distance between the second and third objects is 5.36. As before, fix each column, take the absolute difference between rows 2 and 3 (|-1-2|,|-2-(-1)|,|4-(-1)|,|2-3|), cube each term(3^3 ,1^3 , 5^3 , 1^3), add everything together to get 154, and take the cube root to get 5.36.
 
 # Question 2
 a) Use the filter and select commands to choose only vans from the `Cars93` data set. Select the variables (in this order) Model, Price, EngineSize, Horsepower, MPG.highway, and Length. Name this object `Vans93`. Note: Be sure to load the `dplyr` package after loading `MASS` to prevent masking of the select command. How many objects does `Vans93` have? Print the `Vans93` dataframe in your solutions. Note2: If you get any errors with `select()`, try using `dplyr::select()` to avoid conflicts in `dplyr` and `MASS` packages.
