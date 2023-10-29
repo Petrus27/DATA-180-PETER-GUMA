@@ -54,7 +54,12 @@ rownames(Vans_Euclidean)<-Vans93[,1]
 
 Finally, round the values in this matrix to the hundredths place (two decimal points). Paste the final version of the matrix `Vans_Euclidean` into your solutions. Which two Vans (give the models) have the shortest distance between them? Which two have the largest distance between them?
 ```{r}
-
+Vans_Euclidean <- dist(as.matrix(Vans93[,-1]), method = "euclidean")
+colnames(as.matrix(Vans_Euclidean, nrow=8, ncol=9))<-Vans93[,1] #??
+rownames(as.matrix(Vans_Euclidean, nrow=8, ncol=9))<-Vans93[,1] #??
+Vans_Euclidean
+min(Vans_Euclidean)
+max(Vans_Euclidean)
 ```
 
 
