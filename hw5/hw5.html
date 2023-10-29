@@ -374,12 +374,24 @@ print(X)</code></pre>
 ## [4,]    3    0    0    2
 ## [5,]    2   -3    1    1</code></pre>
 <ol style="list-style-type: lower-alpha">
-<li><p>Find the Euclidean distance between the first and second objects.
-Round the answer to have two decimal points.</p></li>
-<li><p>Find the Manhattan distance between the first and third objects.
-Round the answer to have two decimal points.</p></li>
-<li><p>Find the Minkowski distance (<span class="math inline">\(\ro\)</span> = 3) between the second and third
-objects. Round the answer to have two decimal points.</p></li>
+<li>Find the Euclidean distance between the first and second objects.
+Round the answer to have two decimal points.</li>
+</ol>
+<p>The Euclidean distance between the first and second objects is 6.40.
+I took the square of the difference between rows 1 and 2 of matrix X for
+each column, added them together, and took the square root to get
+sqrt(41).</p>
+</div>
+<div id="rounddistx-methodeuclidean-2" class="section level1">
+<h1>round(dist(X, method=“euclidean”), 2)</h1>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Find the Manhattan distance between the first and third objects.
+Round the answer to have two decimal points.</li>
+</ol>
+<p>round(dist(X, method=“manhattan”), 2)</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Find the Minkowski distance (<span class="math inline">\(\ro\)</span> = 3) between the second and third
+objects. Round the answer to have two decimal points.</li>
 </ol>
 </div>
 <div id="question-2" class="section level1">
