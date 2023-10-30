@@ -60,12 +60,16 @@ rownames(Vans_Euclidean)<-Vans93[,1]
 Vans_Euclidean <- round(Vans_Euclidean,3)
 Vans_Euclidean
 ```
-The Aerostar and the Caravan have the shortest distance between them (3.437), whereas the Eurovan and the Lumina APV have the largest difference (61.800).
+The Aerostar and the Caravan have the shortest distance between them (3.437), whereas the Eurovan and the Lumina APV have the largest distance (61.800).
 
 
 c) Repeat the steps in part (b) but use the Manhattan metric and call the object `Vans_Manhattan`.
 ```{r}
-
+Vans_Manhattan <- as.matrix(dist(Vans93[,-1], method = "manhattan"))
+colnames(Vans_Manhattan)<-Vans93[,1]
+rownames(Vans_Manhattan)<-Vans93[,1]
+Vans_Manhattan <- round(Vans_Euclidean,3) # unrounded gives the shortest and longest distances written below
+Vans_Manhattan
 ```
 
 The vans with the shortest distance between them are the Quest and the MPV (5.0). The vans with the largest distance between them are the Lumina APV and the Eurovan (76.7).
