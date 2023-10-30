@@ -492,11 +492,36 @@ Vans_Euclidean</code></pre>
 ## Eurovan      0.000</code></pre>
 <p>The Aerostar and the Caravan have the shortest distance between them
 (3.437), whereas the Eurovan and the Lumina APV have the largest
-difference (61.800).</p>
+distance (61.800).</p>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>Repeat the steps in part (b) but use the Manhattan metric and call
 the object <code>Vans_Manhattan</code>.</li>
 </ol>
+<pre class="r"><code>Vans_Manhattan &lt;- as.matrix(dist(Vans93[,-1], method = &quot;manhattan&quot;))
+colnames(Vans_Manhattan)&lt;-Vans93[,1]
+rownames(Vans_Manhattan)&lt;-Vans93[,1]
+Vans_Manhattan &lt;- round(Vans_Euclidean,3) # unrounded gives the shortest and longest distances written below
+Vans_Manhattan</code></pre>
+<pre><code>##            Lumina_APV  Astro Caravan Aerostar    MPV  Quest Silhouette Previa
+## Lumina_APV      0.000 17.039  28.371   25.526 19.455 22.660     16.317 33.896
+## Astro          17.039  0.000  29.974   27.140 11.830 15.131      6.531 28.685
+## Caravan        28.371 29.974   0.000    3.437 20.075 17.607     33.910 13.231
+## Aerostar       25.526 27.140   3.437    0.000 17.682 15.545     30.964 13.498
+## MPV            19.455 11.830  20.075   17.682  0.000  4.123     15.582 17.757
+## Quest          22.660 15.131  17.607   15.545  4.123  0.000     19.437 13.868
+## Silhouette     16.317  6.531  33.910   30.964 15.582 19.437      0.000 32.958
+## Previa         33.896 28.685  13.231   13.498 17.757 13.868     32.958  0.000
+## Eurovan        61.800 56.558  35.125   37.660 46.202 42.162     61.447 29.172
+##            Eurovan
+## Lumina_APV  61.800
+## Astro       56.558
+## Caravan     35.125
+## Aerostar    37.660
+## MPV         46.202
+## Quest       42.162
+## Silhouette  61.447
+## Previa      29.172
+## Eurovan      0.000</code></pre>
 <p>The vans with the shortest distance between them are the Quest and
 the MPV (5.0). The vans with the largest distance between them are the
 Lumina APV and the Eurovan (76.7).</p>
@@ -517,10 +542,22 @@ print(D)</code></pre>
 <p>Find (by hand) the inter-group distance between A = <span class="math inline">\(\{O_1, O_4\}\)</span> and B = <span class="math inline">\(\{O_2, O_3, O_5\}\)</span> (where <span class="math inline">\(O_n\)</span> denotes the <span class="math inline">\(n\)</span>th object in the distance matrix
 <strong>D</strong>) using</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>Nearest-neighbor</p></li>
-<li><p>Farthest-neighbor</p></li>
-<li><p>Average-neighbor</p></li>
+<li>Nearest-neighbor</li>
 </ol>
+<p>The nearest-neighbor distance between A and B is 1, between O_1 and
+O_2, which we get by evaluating min{1,9,1.6,6,5,2}; that is, all the
+possible combinations of elements of A with elements of B.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Farthest-neighbor</li>
+</ol>
+<p>The farthest-neighbor distance between A and B is 9, between O_1 and
+O_3, which we get by evaluating max{1,9,1.6,6,5,2} for the same reason
+as before.</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Average-neighbor</li>
+</ol>
+<p>The average-neighbor distance before A and B is
+(1/(2*3))(1+9+1.6+6+5+2)=(1/6)(24.6)=4.1.</p>
 </div>
 <div id="question-4" class="section level1">
 <h1>Question 4</h1>

@@ -85,12 +85,15 @@ Find (by hand) the inter-group distance between A = $\{O_1, O_4\}$ and B = $\{O_
 
 a) Nearest-neighbor
 
-
+The nearest-neighbor distance between A and B is 1, between O_1 and O_2, which we get by evaluating min{1,9,1.6,6,5,2}; that is, all the possible combinations of elements of A with elements of B.
 
 b) Farthest-neighbor
 
+The farthest-neighbor distance between A and B is 9, between O_1 and O_3, which we get by evaluating max{1,9,1.6,6,5,2} for the same reason as before.
 
 c) Average-neighbor
+
+The average-neighbor distance before A and B is (1/(2*3))(1+9+1.6+6+5+2)=(1/6)(24.6)=4.1, adding together the terms from 3ab and dividing by the product of how many elements are in each group.
 
 # Question 4
 Consider the following dendrogram created by a hierarchical clustering of 11 frequently used English words.
