@@ -54,14 +54,13 @@ rownames(Vans_Euclidean)<-Vans93[,1]
 
 Finally, round the values in this matrix to the hundredths place (two decimal points). Paste the final version of the matrix `Vans_Euclidean` into your solutions. Which two Vans (give the models) have the shortest distance between them? Which two have the largest distance between them?
 ```{r}
-Vans_Euclidean <- dist(as.matrix(Vans93[,-1]), method = "euclidean")
-colnames(as.matrix(Vans_Euclidean, nrow=8, ncol=9))<-Vans93[,1] #??
-rownames(as.matrix(Vans_Euclidean, nrow=8, ncol=9))<-Vans93[,1] #??
+Vans_Euclidean <- as.matrix(dist(Vans93[,-1], method = "euclidean"))
+colnames(Vans_Euclidean)<-Vans93[,1]
+rownames(Vans_Euclidean)<-Vans93[,1]
+Vans_Euclidean <- round(Vans_Euclidean,3)
 Vans_Euclidean
-min(Vans_Euclidean)
-max(Vans_Euclidean)
 ```
-
+The Aerostar and the Caravan have the shortest distance between them (3.437), whereas the Eurovan and the Lumina APV have the largest difference (61.800).
 
 
 c) Repeat the steps in part (b) but use the Manhattan metric and call the object `Vans_Manhattan`.

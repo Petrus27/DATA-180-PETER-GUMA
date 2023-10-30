@@ -465,6 +465,34 @@ decimal points). Paste the final version of the matrix
 <code>Vans_Euclidean</code> into your solutions. Which two Vans (give
 the models) have the shortest distance between them? Which two have the
 largest distance between them?</p>
+<pre class="r"><code>Vans_Euclidean &lt;- as.matrix(dist(Vans93[,-1], method = &quot;euclidean&quot;))
+colnames(Vans_Euclidean)&lt;-Vans93[,1]
+rownames(Vans_Euclidean)&lt;-Vans93[,1]
+Vans_Euclidean &lt;- round(Vans_Euclidean,3)
+Vans_Euclidean</code></pre>
+<pre><code>##            Lumina_APV  Astro Caravan Aerostar    MPV  Quest Silhouette Previa
+## Lumina_APV      0.000 17.039  28.371   25.526 19.455 22.660     16.317 33.896
+## Astro          17.039  0.000  29.974   27.140 11.830 15.131      6.531 28.685
+## Caravan        28.371 29.974   0.000    3.437 20.075 17.607     33.910 13.231
+## Aerostar       25.526 27.140   3.437    0.000 17.682 15.545     30.964 13.498
+## MPV            19.455 11.830  20.075   17.682  0.000  4.123     15.582 17.757
+## Quest          22.660 15.131  17.607   15.545  4.123  0.000     19.437 13.868
+## Silhouette     16.317  6.531  33.910   30.964 15.582 19.437      0.000 32.958
+## Previa         33.896 28.685  13.231   13.498 17.757 13.868     32.958  0.000
+## Eurovan        61.800 56.558  35.125   37.660 46.202 42.162     61.447 29.172
+##            Eurovan
+## Lumina_APV  61.800
+## Astro       56.558
+## Caravan     35.125
+## Aerostar    37.660
+## MPV         46.202
+## Quest       42.162
+## Silhouette  61.447
+## Previa      29.172
+## Eurovan      0.000</code></pre>
+<p>The Aerostar and the Caravan have the shortest distance between them
+(3.437), whereas the Eurovan and the Lumina APV have the largest
+difference (61.800).</p>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>Repeat the steps in part (b) but use the Manhattan metric and call
 the object <code>Vans_Manhattan</code>.</li>
