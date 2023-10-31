@@ -155,8 +155,9 @@ In your dendrograms:
 Bonus: (not required) generate the same dendrogram using the `ggdendro` package.
 
 ```{r}
-
-
+# install.packages("ggdendro")
+# ggdendrogram(Ver_Euclidean_HC)
+# can't get this to work
 ```
 
 
