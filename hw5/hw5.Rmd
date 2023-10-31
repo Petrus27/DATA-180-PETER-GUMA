@@ -110,6 +110,8 @@ Let's practice hierarchical clustering with the `vertebrate` dataset that is sav
 a) First, read in the `vertebrate.csv` file and store it in a dataframe object named `vertebrate`. How many rows does the dataframe have? Print the entire dataset in your solutions.
 ```{r}
 vertebrate <- read.csv("vertebrate.csv")
+nrow(vertebrate)
+vertebrate
 ```
 
 b) Perform two separate clustering analyses of the data using the `hclust` function. Provide the dendrograms for both clustering methods.
@@ -117,16 +119,28 @@ b) Perform two separate clustering analyses of the data using the `hclust` funct
 (i)	using the Euclidean metric with complete linkage. Note: Similar to Question 2, start by creating a distance matrix named `vertebrate_euclidean` which should not include any text column. Add row and column names to the matrix from the `vertebrate` dataframe. Then apply `dist()` once again before feeding the matrix into `hclust()` function.
 ```{r}
 Ver_Euclidean<-as.matrix(dist(vertebrate[,-1]))
-
+colnames(Ver_Euclidean) <- vertebrate[,1]
+rownames(Ver_Euclidean) <- vertebrate[,1]
+Ver_Euclidean <- dist(Ver_Euclidean)
+Ver_Euclidean_HC <- hclust(Ver_Euclidean,method="complete")
+Ver_Euclidean
+plot(Ver_Euclidean_HC, lwd=3, xlab="Vertebrates", cex.lab=1.25, main="Clustered vertebrates, Euclidean metric,\n Complete linkage", sub="", hang=-1)
 ```
 
 (ii)using the Manhattan metric with single linkage and
 ```{r}
-
+Ver_Manhattan<-as.matrix(dist(vertebrate[,-1]), metric="Manhattan")
+colnames(Ver_Manhattan) <- vertebrate[,1]
+rownames(Ver_Manhattan) <- vertebrate[,1]
+Ver_Manhattan <- dist(Ver_Manhattan)
+Ver_Manhattan_HC <- hclust(Ver_Manhattan,method="single")
+Ver_Manhattan
+plot(Ver_Manhattan_HC, lwd=3, xlab="Vertebrates", cex.lab=1.25, main="Clustered vertebrates, Manhattan metric,\n Single linkage", sub="", hang=-1)
 ```
 
 Which method do you prefer?
 
+I prefer the first method (Euclidean with complete linkage) because the vertebrates clustered together tend to be more intuitively related. For example, with complete linkage, komodo and turtle are clustered before being paired as a cluster with penguin; single linkage puts them all on the same tier. Complete linkage seems more precise in how it separates data into clusters.
 
 In your dendrograms:
 
