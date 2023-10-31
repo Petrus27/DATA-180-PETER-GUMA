@@ -2,13 +2,13 @@
 title: "HW 4: Dplyr"
 subtitle: "Data 180, Professor Kennedy"
 author: 
-  name: "Your Name"
-  email: "XXXX@dickinson.edu"
+  name: "Peter Guma"
+  email: "gumap@dickinson.edu"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: 
   html_document
 ---
-
+20/20. Good job Peter. Good work. 
 **Due date:** October 26 beginning of class.
 
 Let's get some practice with **dplyr**! For this assignment, you will work with Mario Kart data! This data is made available as part of Tidy Tuesday. A codebook is available at https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-05-25.
@@ -23,6 +23,7 @@ For the entire assignment, make sure to use dplyr functions only. (no base R!)
 library(dplyr)
 records <- read.csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/records.csv')
 head(records)
+library(ggplot2)
 ```
 
 Here are the variables included and their meanings:
@@ -42,46 +43,80 @@ Here are the variables included and their meanings:
 For the entire data, display the summary statistics (mean, median, mode, etc.) using the dplyr function `summary()` via pipe.
 
 ```{r}
-
+records %>% summary()
 ```
 # Question 2
 Return the count of cases where a record was broken in more than a year (365 days).
 
 ```{r}
-
+count <- records %>%
+  filter(record_duration > 365) %>%
+  nrow()
+count #should return 410
 ```
 # Question 3
 Return name of the player, name of the track, record date, and record duration for the record that took the longest time to be broken.
 
 ```{r}
-
+longest <- max(records$record_duration)
+filter(records, record_duration==longest) %>%
+  select(player, track, date, record_duration)
 ```
 
 # Question 4
 Return the mean record time (`time`) by each track. What is the name of the track with the fastest average record time? *Hint: you should use `group_by() and summarize()*
 
 ```{r}
+mean_times_by_track <- records %>%
+  group_by(track) %>%
+  summarize(mean(time))
+mean_times_by_track
 
+min_mean_time <- mean_times_by_track$`mean(time)` %>%
+  min()
+min_mean_time
+
+# I left in some old code for future reference even though it doesn't work
+ # max_track_by_time <- mean_times %>%
+  # filter(mean_times$mean(time)==max_mean_time)
+ # max_track_by_time 
+ # select(mean_times$`mean(time)` == max(mean_times$`mean(time)`))
+ # summarize(mean_times, mean_times$`mean(time)` == max(mean_times))
+ # select(filter(mean_times, mean_time == max(mean_times$`mean(time)`)))
+ # filter(mean_times, mean(time) == min(mean_times$`mean(time)`)) #???
+ # select(mean_times, track)
+ # select(mean_times)
 ```
+The track with the fastest average record time is Mario Raceway, with a mean of 54.19588 days.
+
 # Question 5
 Let's get the year from the `date` column and save it as a variable named `year`. You can use the function `substr(date, 1, 4)` which grabs the first 4 digits in the `date` column. Use this expression in `mutate()` to create a `year` column. (Don't forget to save/overwrite the dataframe returned to the original one!)
 
 ```{r}
-
+year <- records$date %>%
+ substr(1, 4)
+records <- mutate(records, year)
+# records #omitted to save space in knit
 ```
 
 # Question 6
 Now get the average record time (`time`) by year.
 
 ```{r}
-
+mean_times_by_year <- records %>%
+  group_by(year) %>%
+  summarize(mean = mean(time))
+mean_times_by_year
 ```
 # Question 7
 Continuing with your results in Question 6: Do you notice a trend across years? Are the record times getting faster, slower, or no clear pattern in time? Create a barplot where each year appears on the x axis (you can treat year as a categorical variable in this case) and y axis showing the mean record time in each year. Interpret your graph. *Hint: Use your code in Question 6, which returns the average record times by year, followed by ` %>% ggplot(aes(year,mean)) + geom_bar(stat='identity')` Hint2: To make your figure wider, you can insert fig.width=10 inside the curly brackets at the beginning of your r code chunk below, as {r, fig.width=10} which I already did for you below,*
 
 ```{r, fig.width=10}
-
+mean_times_by_year %>%
+ ggplot(aes(year, mean)) + 
+ geom_bar(stat='identity') + labs(title="Mean Record Time by Year")
 ```
+There is a very slight trend upwards in the mean record time, although it varies so much from year to year that any given year could have a noticeably larger or smaller mean than another in the dataset. About one half to two-thirds of the record time data is approximately 90 days. It is worth noting that although the mean for 2021 appears lower than the past ~10 years, these data were released in May 2021, so the end result would likely be larger.
 
 # Question 8
 Create two overlaid histograms by `type` on the same plot where each histogram shows the distribution of `time` for a given track `type`. Combine dplyr and ggplot2 to achieve this. How do record times compare between Single Lap and Three Lap tracks? Hint: use `records %>% dplyr functions %>% ggplot(., aes()) + type of ggplot plot` to combine dpylr with ggplot. Note that the dot inside `ggplot()` is a placeholder for `records`, as dplyr has already pulled `records` df at the beginning of the code (making it unnecessary to type it twice!)
@@ -89,28 +124,59 @@ Create two overlaid histograms by `type` on the same plot where each histogram s
 Note: Set `alpha=.5` for transparency.
 
 ```{r}
-
+#single_laps <- filter(records, type=="Single Lap")
+#three_laps <- filter(records, type=="Three Lap")
+records %>%
+  group_by(type) %>%
+  ggplot(., aes(time)) + 
+  geom_histogram(data=filter(records, type=="Single Lap"), aes(fill=type), bins=30, alpha=.5) +
+  geom_histogram(data=filter(records, type=="Three Lap"), aes(fill=type), bins=30, alpha=.5) + scale_fill_manual(name="Type", values=c("blue", "red"), labels=c("Single Lap", "Three Lap")) +
+  labs(x="Time (in seconds)", y="Count", title="Time Distribution by Type of Track")
+#  geom_histogram(stat='identity', bins=50, alpha=.5) +
+#  scale_x_discrete(label=function(x) stringr::str_trunc(x,10))
 ```
+Record times for Three Lap tracks are typically much longer than those for Single Lap tracks; this makes sense because completing more laps usually implies a longer game. However, their bins do overlap, and the smallest bin on the histogram only contains data from Three Laps. Three Lap tracks also have a much wider range of observed times, whereas the times for Single Lap tracks are mostly under 100 seconds.
 
 # Question 9
 Three Lap time reports the total time spent finishing three laps in total, as opposed to finishing a single lap. Let's divide all time observations with `type=="Three Lap"` by 3 to check whether **per lap** performance declines across Three Lap vs. Single Lap. Generate a new variable named `time_per` which is the time spent per round, and create two overlaid histograms of `type_per` by `type`. Hint: Use `mutate()`, and inside `mutate()` use `ifelse()` function to conditionally replace rows: e.g.., `ifelse(type=="Three Lap",time/3,time)` which divides `time` by three only if `type=="Three Lap"`.
 
 ```{r}
+new_records <- mutate(records, time_per=ifelse(type=="Three Lap", time/3, time))
 
+new_records %>%
+  group_by(type) %>%
+  ggplot(., aes(time_per)) + 
+  geom_histogram(data=filter(new_records, type=="Single Lap"), aes(fill=type), bins=30, alpha=.5) +
+  geom_histogram(data=filter(new_records, type=="Three Lap"), aes(fill=type), bins=30, alpha=.5) + scale_fill_manual(name="Type", values=c("blue", "red"), labels=c("Single Lap", "Three Lap")) +
+  labs(x="Time (in seconds)", y="Count", title="Time Distribution by Type of Track, Per Lap")
 ```
 # Question 10
 There appears to be recent discoveries of shortcuts within some of the tracks causing a number of extraordinarily fast records set in `Three Lap` tracks (Have you noticed this in your graph in Question 9?). Replicate your histogram in Question 9 with `shortcut=="No"` filter.
 
 ```{r}
-
+new_records %>%
+  group_by(type) %>%
+  ggplot(., aes(time_per)) + 
+  geom_histogram(data=filter(new_records, type=="Single Lap", shortcut=="No"), aes(fill=type), bins=30, alpha=.5) +
+  geom_histogram(data=filter(new_records, type=="Three Lap", shortcut=="No"), aes(fill=type), bins=30, alpha=.5) + scale_fill_manual(name="Type", values=c("blue", "red"), labels=c("Single Lap", "Three Lap")) +
+  labs(x="Time (in seconds)", y="Count", title="Time Distribution by Type of Track, Per Lap, Without Shortcuts")
 ```
 
 # Question 11
 Lastly, compare the mean `time` by `system_played`. Do you observe a difference across the two game systems? (Note: NTSC version of the game runs at 60 FPS (Frames Per Second), and PAL runs at 50 FPS!) Does this appear to affect performance of records set?
 
 ```{r}
+mean(filter(records, system_played=="NTSC")$time)
+mean(filter(records, system_played=="PAL")$time)
 
+records %>%
+  ggplot(., aes(time)) + 
+  geom_histogram(data=filter(records, system_played=="NTSC"), aes(fill=system_played), bins=30, alpha=.5) +
+  geom_histogram(data=filter(records, system_played=="PAL"), aes(fill=system_played), bins=30, alpha=.5) + scale_fill_manual(name="System Played", values=c("orange", "pink"), labels=c("NTSC", "PAL")) +
+  labs(x="Time (in seconds)", y="Count", title="Time Distribution by System Played")
 ```
+
+Yes, NTSC has a mean time of 79.93683 seconds, whereas PAL's mean time is 95.15553 seconds. We can see from the histogram that this affects performance of records set, as only NTSC users have achieved times in the fastest bin. At the same time, PAL appears to be a more popular system, so a larger proportion of the records are PAL than NTSC. Both are well suited to breaking records.
 
 You are done! 🏁 Don't forget to commit and push your .Rmd file to your Github repository before the due date. (Well... the checkered flag emoji is now super relevant for this assignment!)
 

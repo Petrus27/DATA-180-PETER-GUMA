@@ -1,0 +1,15 @@
+---
+title: "Calculating distances in R"
+author: "Peter Guma"
+date: "2023-10-23"
+output: html_document
+---
+
+x=matrix(c(1,1,2,3,1,4),nrow=3,byrow=T)
+x
+
+dist(x,method="manhattan")
+
+dist(x,method="minkowski",p=3,upper=T)
+
+dist(x,method="euclidean") #least commonly used
