@@ -1,3 +1,6 @@
+install.packages("planets")
+library(planets)
+
 # Using the "apply" function in R. 
 
 Test<- matrix(sample(1:20,12, replace = T), nrow=3, byrow = T)
@@ -35,3 +38,5 @@ rng
 
 scale(Data_M, center = F, scale=rng)
 
+
+data("planets")
