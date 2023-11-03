@@ -59,7 +59,9 @@ For k = 3 and k = 4, perform a k-means clustering of the mammals based on their 
 
 ```{r}
 set.seed(125)
-
+MMilk_km_3 <- kmeans(Mammals_Milk_Std, centers=3, nstart=100)
+MMilk_km_4 <- kmeans(Mammals_Milk_Std, centers=4, nstart=100)
+mutate(Mammals_Milk, "km_3"=MMilk_km_3$cluster, "km_4"=MMilk_km_4$cluster)
 ```
 
 # Question 4
