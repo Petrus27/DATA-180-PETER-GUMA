@@ -2,8 +2,8 @@
 title: "HW 6"
 subtitle: "Data 180, Professor Kennedy"
 author: 
-  name: "Your Name"
-  email: "XXXX@dickinson.edu"
+  name: "Peter Guma"
+  email: "gumap@dickinson.edu"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: 
   html_document
@@ -61,7 +61,11 @@ For k = 3 and k = 4, perform a k-means clustering of the mammals based on their 
 set.seed(125)
 MMilk_km_3 <- kmeans(Mammals_Milk_Std, centers=3, nstart=100)
 MMilk_km_4 <- kmeans(Mammals_Milk_Std, centers=4, nstart=100)
-mutate(Mammals_Milk, "km_3"=MMilk_km_3$cluster, "km_4"=MMilk_km_4$cluster)
+Mammals_Milk <- mutate(Mammals_Milk, "km_3"=MMilk_km_3$cluster, "km_4"=MMilk_km_4$cluster)
+Mammals_Milk_3 <- arrange(Mammals_Milk, Mammals_Milk$km_3)
+Mammals_Milk_4 <- arrange(Mammals_Milk, Mammals_Milk$km_4)
+Mammals_Milk_3
+Mammals_Milk_4
 ```
 
 # Question 4
