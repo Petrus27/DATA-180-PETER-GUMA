@@ -2,8 +2,8 @@
 title: "HW 6"
 subtitle: "Data 180, Professor Kennedy"
 author: 
-  name: "Your Name"
-  email: "XXXX@dickinson.edu"
+  name: "Peter Guma"
+  email: "gumap@dickinson.edu"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: 
   html_document
@@ -30,7 +30,7 @@ head(Mammals_Milk)
 Use the `summary()` function to produce a summary of the variables (mean, median..) in the Mammals_Milk data frame.
 
 ```{r}
-
+summary(Mammals_Milk)
 ```
 
 To have comparable units, let's standardize values (aka get z-scores) of the five variables: Water, Protein, Fat, Lactose, and Ash using the scale function and store it as an object `Mammals_Milk_Std`. A 0 z-score means an observation is exactly on its mean; a negative value means it's smaller than mean; a larger number means it's larger than the mean. ([Here is a nice summary on z-scores](https://www.simplypsychology.org/z-score.html)). Use this standardized object when indicated in the next questions. 
