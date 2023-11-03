@@ -2,8 +2,8 @@
 title: "HW 6"
 subtitle: "Data 180, Professor Kennedy"
 author: 
-  name: "Peter Guma"
-  email: "gumap@dickinson.edu"
+  name: "Your Name"
+  email: "XXXX@dickinson.edu"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: 
   html_document
@@ -50,7 +50,8 @@ Use hierarchical clustering (i.e. `hclust`) to cluster the animals based on the 
 *	Set the frame.plot argument to T to draw a box around the dendrograms
 
 ```{r}
-
+Mammals_Milk_Std_HC <- hclust(dist(Mammals_Milk_Std)) # Euclidean Metric, Complex Linkage is the default
+plot(Mammals_Milk_Std_HC, lwd=3, main="Mammals Clustered by Std. Milk Composition \n Euclidean Metric, Complete Linkage", sub="", xlab="Mammals", cex.lab=1.25, hang=-1, frame.plot=T)
 ```
 
 # Question 3
