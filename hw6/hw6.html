@@ -457,7 +457,6 @@ cluster solution sorting.</p>
 MMilk_km_3 &lt;- kmeans(Mammals_Milk_Std, centers=3, nstart=100)
 MMilk_km_4 &lt;- kmeans(Mammals_Milk_Std, centers=4, nstart=100)
 Mammals_Milk &lt;- mutate(Mammals_Milk, &quot;km_3&quot;=MMilk_km_3$cluster, &quot;km_4&quot;=MMilk_km_4$cluster)
-
 Mammals_Milk_3 &lt;- arrange(Mammals_Milk, Mammals_Milk$km_3)
 Mammals_Milk_4 &lt;- arrange(Mammals_Milk, Mammals_Milk$km_4)
 Mammals_Milk_3</code></pre>
@@ -530,6 +529,11 @@ clustering procedures. Include in the table the values</p>
 <p>Call the summary tables <code>MMilk_Agg_K3</code> and
 <code>MMilk_Agg_K4</code>. Round the elements in the data frames to the
 hundredths place and paste them into your solutions.</p>
+<pre class="r"><code>summarize(group_by(Mammals_Milk_3), `Count`&lt;-nrow(Mammals_Milk_3), `Mean_Water` &lt;- mean(Mammals_Milk_3$Water))</code></pre>
+<pre><code>## # A tibble: 1 × 2
+##   `Count &lt;- nrow(Mammals_Milk_3)` `Mean_Water &lt;- mean(Mammals_Milk_3$Water)`
+##                             &lt;int&gt;                                      &lt;dbl&gt;
+## 1                              24                                       78.5</code></pre>
 </div>
 <div id="question-5" class="section level1">
 <h1>Question 5</h1>

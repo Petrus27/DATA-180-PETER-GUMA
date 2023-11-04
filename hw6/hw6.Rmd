@@ -81,7 +81,11 @@ Use the `group_by` and `summarize` functions to provide tables summarizing the r
 Call the summary tables `MMilk_Agg_K3` and `MMilk_Agg_K4`. Round the elements in the data frames to the hundredths place and paste them into your solutions.
 
 ```{r}
-summarize(group_by(Mammals_Milk_3), `Count`<-nrow(Mammals_Milk_3), `Mean_Water` <- mean(Mammals_Milk_3$Water))
+MMilk_Agg_K3 <- round(summarize(group_by(Mammals_Milk_3), `Count`=nrow(Mammals_Milk_3), `Mean_Water`=mean(Mammals_Milk_3$Water), `Mean_Protein`=mean(Mammals_Milk_3$Protein), `Mean_Fat`=mean(Mammals_Milk_3$Fat), `Mean_Lactose`=mean(Mammals_Milk_3$Lactose), `Mean_Ash`=mean(Mammals_Milk_3$Ash)),2)
+MMilk_Agg_K3
+
+MMilk_Agg_K4 <- round(summarize(group_by(Mammals_Milk_4), `Count`=nrow(Mammals_Milk_4), `Mean_Water`=mean(Mammals_Milk_4$Water), `Mean_Protein`=mean(Mammals_Milk_4$Protein), `Mean_Fat`=mean(Mammals_Milk_4$Fat), `Mean_Lactose`=mean(Mammals_Milk_4$Lactose), `Mean_Ash`=mean(Mammals_Milk_4$Ash)),2)
+MMilk_Agg_K4
 ```
 # Question 5
 For the K=3 solution, make a set of boxplots showing the distribution of each variable by cluster membership. In total you should have five graphs (one for each variable in the dataset). Each graph should include three boxplots (one for each cluster). *Hint:* Use `ggplot2` with `geom_boxplot` and create five different ggplot objects. Name them as graph1, graph2,... as below. Finally, use the library named `cowplot` which includes the function `plot_grid()` that enables plotting multiple graphs side by side. See more in the cell below. Make sure to change `eval=F` to `eval=T` in its options when you execute the cell.
