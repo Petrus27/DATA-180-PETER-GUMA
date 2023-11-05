@@ -112,7 +112,7 @@ for (i in 1:8) {
 plot(c(1:8),wgss,type="b",pch=16,cex=1.3,ylim=c(0,8000),xlab="Number of Groups",ylab="WGSS")
 ```
 
-The elbow plot suggests that three clusters is ideal because the difference in WGSS begins to rapidly level off after K=3. This differs from my impression from the dendrogram in Question 2 because there it looks like four clusters is ideal for grouping all the mammals logically. I would argue that both K=3 and K=4 would work fine, though three clusters are slightly better from an optimization standpoint.
+The elbow plot suggests that three clusters is ideal because the difference in WGSS begins to rapidly level off after K=3. This differs from my impression from the dendrogram in Question 2 because there it looks like four clusters is effective at grouping all the mammals logically. I would argue that both K=3 and K=4 work fine, though using three clusters is slightly better from an optimization standpoint.
 
 You are done! 🏁 Don't forget to commit and push your .Rmd file to your Github repository before the due date.
 
