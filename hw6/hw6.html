@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2023-11-03" />
+<meta name="date" content="2023-11-05" />
 
 <title>HW 6</title>
 
@@ -354,7 +354,7 @@ display: none;
 <h4 class="author">Peter Guma</h4>
 <a class="author_email" href="mailto:#"><a href="mailto:gumap@dickinson.edu" class="email">gumap@dickinson.edu</a></a>
 </address>
-<h4 class="date">November 03, 2023</h4>
+<h4 class="date">November 05, 2023</h4>
 
 </div>
 
@@ -529,11 +529,18 @@ clustering procedures. Include in the table the values</p>
 <p>Call the summary tables <code>MMilk_Agg_K3</code> and
 <code>MMilk_Agg_K4</code>. Round the elements in the data frames to the
 hundredths place and paste them into your solutions.</p>
-<pre class="r"><code>summarize(group_by(Mammals_Milk_3), `Count`&lt;-nrow(Mammals_Milk_3), `Mean_Water` &lt;- mean(Mammals_Milk_3$Water))</code></pre>
-<pre><code>## # A tibble: 1 × 2
-##   `Count &lt;- nrow(Mammals_Milk_3)` `Mean_Water &lt;- mean(Mammals_Milk_3$Water)`
-##                             &lt;int&gt;                                      &lt;dbl&gt;
-## 1                              24                                       78.5</code></pre>
+<pre class="r"><code>MMilk_Agg_K3 &lt;- round(summarize(group_by(Mammals_Milk_3), `Count`=nrow(Mammals_Milk_3), `Mean_Water`=mean(Mammals_Milk_3$Water), `Mean_Protein`=mean(Mammals_Milk_3$Protein), `Mean_Fat`=mean(Mammals_Milk_3$Fat), `Mean_Lactose`=mean(Mammals_Milk_3$Lactose), `Mean_Ash`=mean(Mammals_Milk_3$Ash)),2)
+MMilk_Agg_K3</code></pre>
+<pre><code>## # A tibble: 1 × 6
+##   Count Mean_Water Mean_Protein Mean_Fat Mean_Lactose Mean_Ash
+##   &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;
+## 1    24       78.5         5.96     10.2         4.22     0.77</code></pre>
+<pre class="r"><code>MMilk_Agg_K4 &lt;- round(summarize(group_by(Mammals_Milk_4), `Count`=nrow(Mammals_Milk_4), `Mean_Water`=mean(Mammals_Milk_4$Water), `Mean_Protein`=mean(Mammals_Milk_4$Protein), `Mean_Fat`=mean(Mammals_Milk_4$Fat), `Mean_Lactose`=mean(Mammals_Milk_4$Lactose), `Mean_Ash`=mean(Mammals_Milk_4$Ash)),2)
+MMilk_Agg_K4</code></pre>
+<pre><code>## # A tibble: 1 × 6
+##   Count Mean_Water Mean_Protein Mean_Fat Mean_Lactose Mean_Ash
+##   &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;
+## 1    24       78.5         5.96     10.2         4.22     0.77</code></pre>
 </div>
 <div id="question-5" class="section level1">
 <h1>Question 5</h1>

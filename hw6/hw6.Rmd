@@ -81,10 +81,10 @@ Use the `group_by` and `summarize` functions to provide tables summarizing the r
 Call the summary tables `MMilk_Agg_K3` and `MMilk_Agg_K4`. Round the elements in the data frames to the hundredths place and paste them into your solutions.
 
 ```{r}
-MMilk_Agg_K3 <- round(summarize(group_by(Mammals_Milk_3), `Count`=nrow(Mammals_Milk_3), `Mean_Water`=mean(Mammals_Milk_3$Water), `Mean_Protein`=mean(Mammals_Milk_3$Protein), `Mean_Fat`=mean(Mammals_Milk_3$Fat), `Mean_Lactose`=mean(Mammals_Milk_3$Lactose), `Mean_Ash`=mean(Mammals_Milk_3$Ash)),2)
+MMilk_Agg_K3 <- round(summarize(group_by(Mammals_Milk, Mammals_Milk$km_3), `Count`=n(), `Mean_Water`=mean(Water), `Mean_Protein`=mean(Protein), `Mean_Fat`=mean(Fat), `Mean_Lactose`=mean(Lactose), `Mean_Ash`=mean(Ash)),2)
 MMilk_Agg_K3
 
-MMilk_Agg_K4 <- round(summarize(group_by(Mammals_Milk_4), `Count`=nrow(Mammals_Milk_4), `Mean_Water`=mean(Mammals_Milk_4$Water), `Mean_Protein`=mean(Mammals_Milk_4$Protein), `Mean_Fat`=mean(Mammals_Milk_4$Fat), `Mean_Lactose`=mean(Mammals_Milk_4$Lactose), `Mean_Ash`=mean(Mammals_Milk_4$Ash)),2)
+MMilk_Agg_K4 <- round(summarize(group_by(Mammals_Milk, Mammals_Milk$km_4), `Count`=n(), `Mean_Water`=mean(Water), `Mean_Protein`=mean(Protein), `Mean_Fat`=mean(Fat), `Mean_Lactose`=mean(Lactose), `Mean_Ash`=mean(Ash)),2)
 MMilk_Agg_K4
 ```
 # Question 5
