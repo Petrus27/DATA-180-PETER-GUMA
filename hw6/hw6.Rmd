@@ -81,18 +81,20 @@ Use the `group_by` and `summarize` functions to provide tables summarizing the r
 Call the summary tables `MMilk_Agg_K3` and `MMilk_Agg_K4`. Round the elements in the data frames to the hundredths place and paste them into your solutions.
 
 ```{r}
-MMilk_Agg_K3 <- round(summarize(group_by(Mammals_Milk, Mammals_Milk$km_3), `Count`=n(), `Mean_Water`=mean(Water), `Mean_Protein`=mean(Protein), `Mean_Fat`=mean(Fat), `Mean_Lactose`=mean(Lactose), `Mean_Ash`=mean(Ash)),2)
+MMilk_Agg_K3 <- round(summarize(group_by(Mammals_Milk, `Cluster`=Mammals_Milk$km_3), `Count`=n(), `Mean_Water`=mean(Water), `Mean_Protein`=mean(Protein), `Mean_Fat`=mean(Fat), `Mean_Lactose`=mean(Lactose), `Mean_Ash`=mean(Ash)),2)
 MMilk_Agg_K3
 
-MMilk_Agg_K4 <- round(summarize(group_by(Mammals_Milk, Mammals_Milk$km_4), `Count`=n(), `Mean_Water`=mean(Water), `Mean_Protein`=mean(Protein), `Mean_Fat`=mean(Fat), `Mean_Lactose`=mean(Lactose), `Mean_Ash`=mean(Ash)),2)
+MMilk_Agg_K4 <- round(summarize(group_by(Mammals_Milk, `Cluster`=Mammals_Milk$km_4), `Count`=n(), `Mean_Water`=mean(Water), `Mean_Protein`=mean(Protein), `Mean_Fat`=mean(Fat), `Mean_Lactose`=mean(Lactose), `Mean_Ash`=mean(Ash)),2)
 MMilk_Agg_K4
 ```
 # Question 5
 For the K=3 solution, make a set of boxplots showing the distribution of each variable by cluster membership. In total you should have five graphs (one for each variable in the dataset). Each graph should include three boxplots (one for each cluster). *Hint:* Use `ggplot2` with `geom_boxplot` and create five different ggplot objects. Name them as graph1, graph2,... as below. Finally, use the library named `cowplot` which includes the function `plot_grid()` that enables plotting multiple graphs side by side. See more in the cell below. Make sure to change `eval=F` to `eval=T` in its options when you execute the cell.
 
 ```{r, eval=F}
+install.packages("cowplot")
 require(cowplot)
-graph1 <- 
+graph1 <- ggplot(Mammals_Milk, aes(Water)) + geom_boxplot() + facet_wrap(~Mammals_Milk$km_3)
+graph1
 graph2 <- 
 graph3 <- 
 graph4 <- 
