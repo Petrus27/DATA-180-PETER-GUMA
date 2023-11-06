@@ -1,9 +1,10 @@
-Cluster_Ex<-read.csv("") # The path to your data goes here. 
+Cluster_Ex<-read.csv("C:/Users/Peter/Documents/College Documents/DATA 180/Data 180 Peter Guma/DATA-180-PETER-GUMA/Cluster_Ex.csv") # The path to your data goes here. 
 head(Cluster_Ex)
 
 
 Kmeans_3<-kmeans(Cluster_Ex,centers=3)
 
+Kmeans_3
 
 #Centers.
 Kmeans_3$centers
