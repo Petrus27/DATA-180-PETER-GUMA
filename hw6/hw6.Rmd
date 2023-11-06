@@ -93,11 +93,11 @@ For the K=3 solution, make a set of boxplots showing the distribution of each va
 ```{r, eval=T}
 #install.packages("cowplot")
 require(cowplot)
-graph1 <- ggplot(Mammals_Milk, aes(Water)) + geom_boxplot() + facet_wrap(vars(Mammals_Milk$km_3))
-graph2 <- ggplot(Mammals_Milk, aes(Protein)) + geom_boxplot() + facet_wrap(vars(Mammals_Milk$km_3))
-graph3 <- ggplot(Mammals_Milk, aes(Fat)) + geom_boxplot() + facet_wrap(vars(Mammals_Milk$km_3))
-graph4 <- ggplot(Mammals_Milk, aes(Lactose)) + geom_boxplot() + facet_wrap(vars(Mammals_Milk$km_3))
-graph5 <- ggplot(Mammals_Milk, aes(Ash)) + geom_boxplot() + facet_wrap(vars(Mammals_Milk$km_3))
+graph1 <- ggplot(Mammals_Milk, aes(Water)) + geom_boxplot() + facet_grid(vars(Mammals_Milk$km_3)) + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+graph2 <- ggplot(Mammals_Milk, aes(Protein)) + geom_boxplot() + facet_grid(vars(Mammals_Milk$km_3)) + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+graph3 <- ggplot(Mammals_Milk, aes(Fat)) + geom_boxplot() + facet_grid(vars(Mammals_Milk$km_3)) + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+graph4 <- ggplot(Mammals_Milk, aes(Lactose)) + geom_boxplot() + facet_grid(vars(Mammals_Milk$km_3)) + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+graph5 <- ggplot(Mammals_Milk, aes(Ash)) + geom_boxplot() + facet_grid(vars(Mammals_Milk$km_3)) + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
 
 plot_grid(graph1, graph2, graph3, graph4, graph5, labels = "AUTO")
 ```
