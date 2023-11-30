@@ -2,13 +2,13 @@
 title: "HW 6"
 subtitle: "Data 180, Professor Kennedy"
 author: 
-  name: "Your Name"
-  email: "XXXX@dickinson.edu"
+  name: "Peter Guma"
+  email: "gumap@dickinson.edu"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: 
   html_document
 ---
-
+20/20. Good job. 
 ```{r global options, include = FALSE}
 knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 ```
@@ -30,7 +30,7 @@ head(Mammals_Milk)
 Use the `summary()` function to produce a summary of the variables (mean, median..) in the Mammals_Milk data frame.
 
 ```{r}
-
+summary(Mammals_Milk)
 ```
 
 To have comparable units, let's standardize values (aka get z-scores) of the five variables: Water, Protein, Fat, Lactose, and Ash using the scale function and store it as an object `Mammals_Milk_Std`. A 0 z-score means an observation is exactly on its mean; a negative value means it's smaller than mean; a larger number means it's larger than the mean. ([Here is a nice summary on z-scores](https://www.simplypsychology.org/z-score.html)). Use this standardized object when indicated in the next questions. 
@@ -50,7 +50,8 @@ Use hierarchical clustering (i.e. `hclust`) to cluster the animals based on the 
 *	Set the frame.plot argument to T to draw a box around the dendrograms
 
 ```{r}
-
+Mammals_Milk_Std_HC <- hclust(dist(Mammals_Milk_Std)) # Euclidean Metric, Complex Linkage is the default
+plot(Mammals_Milk_Std_HC, lwd=3, main="Mammals Clustered by Std. Milk Composition \n Euclidean Metric, Complete Linkage", sub="", xlab="Mammals", cex.lab=1.25, hang=-1, frame.plot=T)
 ```
 
 # Question 3
@@ -58,7 +59,13 @@ For k = 3 and k = 4, perform a k-means clustering of the mammals based on their 
 
 ```{r}
 set.seed(125)
-
+MMilk_km_3 <- kmeans(Mammals_Milk_Std, centers=3, nstart=100)
+MMilk_km_4 <- kmeans(Mammals_Milk_Std, centers=4, nstart=100)
+Mammals_Milk <- mutate(Mammals_Milk, "km_3"=MMilk_km_3$cluster, "km_4"=MMilk_km_4$cluster)
+Mammals_Milk_3 <- arrange(Mammals_Milk, Mammals_Milk$km_3)
+Mammals_Milk_4 <- arrange(Mammals_Milk, Mammals_Milk$km_4)
+Mammals_Milk_3
+Mammals_Milk_4
 ```
 
 # Question 4
@@ -74,18 +81,23 @@ Use the `group_by` and `summarize` functions to provide tables summarizing the r
 Call the summary tables `MMilk_Agg_K3` and `MMilk_Agg_K4`. Round the elements in the data frames to the hundredths place and paste them into your solutions.
 
 ```{r}
+MMilk_Agg_K3 <- round(summarize(group_by(Mammals_Milk, `Cluster`=Mammals_Milk$km_3), `Count`=n(), `Mean_Water`=mean(Water), `Mean_Protein`=mean(Protein), `Mean_Fat`=mean(Fat), `Mean_Lactose`=mean(Lactose), `Mean_Ash`=mean(Ash)),2)
+MMilk_Agg_K3
 
+MMilk_Agg_K4 <- round(summarize(group_by(Mammals_Milk, `Cluster`=Mammals_Milk$km_4), `Count`=n(), `Mean_Water`=mean(Water), `Mean_Protein`=mean(Protein), `Mean_Fat`=mean(Fat), `Mean_Lactose`=mean(Lactose), `Mean_Ash`=mean(Ash)),2)
+MMilk_Agg_K4
 ```
 # Question 5
 For the K=3 solution, make a set of boxplots showing the distribution of each variable by cluster membership. In total you should have five graphs (one for each variable in the dataset). Each graph should include three boxplots (one for each cluster). *Hint:* Use `ggplot2` with `geom_boxplot` and create five different ggplot objects. Name them as graph1, graph2,... as below. Finally, use the library named `cowplot` which includes the function `plot_grid()` that enables plotting multiple graphs side by side. See more in the cell below. Make sure to change `eval=F` to `eval=T` in its options when you execute the cell.
 
-```{r, eval=F}
+```{r, eval=T}
+#install.packages("cowplot")
 require(cowplot)
-graph1 <- 
-graph2 <- 
-graph3 <- 
-graph4 <- 
-graph5 <- 
+graph1 <- ggplot(Mammals_Milk, aes(Water)) + geom_boxplot() + facet_grid(vars(Mammals_Milk$km_3)) + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+graph2 <- ggplot(Mammals_Milk, aes(Protein)) + geom_boxplot() + facet_grid(vars(Mammals_Milk$km_3)) + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+graph3 <- ggplot(Mammals_Milk, aes(Fat)) + geom_boxplot() + facet_grid(vars(Mammals_Milk$km_3)) + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+graph4 <- ggplot(Mammals_Milk, aes(Lactose)) + geom_boxplot() + facet_grid(vars(Mammals_Milk$km_3)) + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+graph5 <- ggplot(Mammals_Milk, aes(Ash)) + geom_boxplot() + facet_grid(vars(Mammals_Milk$km_3)) + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
 
 plot_grid(graph1, graph2, graph3, graph4, graph5, labels = "AUTO")
 ```
@@ -94,9 +106,15 @@ plot_grid(graph1, graph2, graph3, graph4, graph5, labels = "AUTO")
 Create a plot showing how WGSS changes for K = 1 to 8 groups. For each K choice, cluster the mammals based on their standardized milk composition and set the nstart argument to run at 50 at each iteration. Compute and record WGSS. After the loop is done, show the plot of WGSS by number of clusters in your solutions. How many clusters does the elbow plot suggest? How does this compare to your impression from the dendrogram in Question 2?
 
 ```{r}
-
+wgss <- rep(0,8)
+for (i in 1:8) {
+  wgss[i]<-kmeans(Mammals_Milk,centers=i,nstart=50)$tot.withinss}
+plot(c(1:8),wgss,type="b",pch=16,cex=1.3,ylim=c(0,8000),xlab="Number of Groups",ylab="WGSS")
 ```
 
+The elbow plot suggests that three clusters is ideal because the difference in WGSS begins to rapidly level off after K=3. This differs from my impression from the dendrogram in Question 2 because there it looks like four clusters is effective at grouping all the mammals logically. I would argue that both K=3 and K=4 work fine, though using three clusters is slightly better from an optimization standpoint.
+
+# Very nicely done. Good job. 
 
 You are done! 🏁 Don't forget to commit and push your .Rmd file to your Github repository before the due date.
 
