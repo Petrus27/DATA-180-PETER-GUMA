@@ -3,7 +3,7 @@
 # Text Mining
 # nomination speech
 
-setwd(" ") # Set this to your local GitHub repository.
+setwd("C:/Users/Peter/Documents/College Documents/DATA 180/Data 180 Peter Guma/DATA-180-PETER-GUMA") # Set this to your local GitHub repository.
 
 library(tm) # text mining package
 
@@ -21,7 +21,7 @@ negWords <- scan("negative-words.txt", character(0), sep = "\n")  # 4783 items
 head(posWords,15)
 head(negWords,15)
 
-# How does the computer know that these are positive and negative words? 
+# How does the computer know that these are positive and negative words? We tell it that
 
 
 # cleaning part!!
