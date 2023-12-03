@@ -365,11 +365,8 @@ abcnews, posted on Github in a csv file named <code>news.csv</code>.</p>
 <p>Read the <code>news.csv</code> into R and create the object
 <code>news</code> using</p>
 <pre class="r"><code># library(tidyverse)
-library(MASS)
-library(dplyr)
-library(tidyverse)
-library(tibble)
-# library(tm)
+library(dplyr) # I added this so it would knit properly
+library(tm)
 setwd(&quot;C:/Users/Peter/Documents/College Documents/DATA 180/Data 180 Peter Guma/DATA-180-PETER-GUMA/hw7&quot;)
 news&lt;-read.csv(&quot;news.csv&quot;,header=T)</code></pre>
 <p>Read also the positive and negative word dictionaries, both found on
@@ -388,11 +385,21 @@ head(posWords,15)</code></pre>
 <div id="question-1" class="section level1">
 <h1>Question 1</h1>
 <p>First, check how many years of news data we have loaded in in R.</p>
+<pre class="r"><code>nrow(news)</code></pre>
+<pre><code>## [1] 10000</code></pre>
 </div>
 <div id="question-2" class="section level1">
 <h1>Question 2</h1>
 <p>Store the headlines column in a vector of text named
 <code>charVector</code>. Print the first 6 entries in the vector.</p>
+<pre class="r"><code>charVector &lt;- news$headline_text
+head(charVector)</code></pre>
+<pre><code>## [1] &quot;people flock to kabul airport as taliban seizes capital&quot;
+## [2] &quot;senior liberals desert turnbull&quot;                        
+## [3] &quot;interview matt scott&quot;                                   
+## [4] &quot;one plus one: jim cassidy&quot;                              
+## [5] &quot;more australians leave lebanon&quot;                         
+## [6] &quot;melb housing plan released&quot;</code></pre>
 </div>
 <div id="question-3" class="section level1">
 <h1>Question 3</h1>
@@ -401,6 +408,8 @@ head(posWords,15)</code></pre>
 (See class notes on how to do this) Then convert <code>wordVector</code>
 into a corpus object named <code>wordCorpus</code> using the function
 <code>Corpus()</code>.</p>
+<pre class="r"><code>wordVector &lt;- VectorSource(charVector)
+wordCorpus &lt;- Corpus(wordVector)</code></pre>
 </div>
 <div id="question-4" class="section level1">
 <h1>Question 4</h1>
@@ -410,12 +419,21 @@ following on the <code>wordCorpus</code> object using the
 paragraph after trimming. (Note: ignore warnings.) * Make all text
 lowercase * Remove punctuation * Remove numbers * Remove stopwords
 (e.g., the, a, at, etc.)</p>
+<pre class="r"><code>wordCorpus &lt;- tm_map(wordCorpus, tolower)
+wordCorpus &lt;- tm_map(wordCorpus, removePunctuation)
+wordCorpus &lt;- tm_map(wordCorpus, removeNumbers)
+wordCorpus &lt;- tm_map(wordCorpus, removeWords, stopwords(&quot;en&quot;))</code></pre>
 </div>
 <div id="question-5" class="section level1">
 <h1>Question 5</h1>
 <p>What is a term document matrix? Explain. Create a term document
 matrix from the news vector and store it as an object named
 <code>tdm</code> using the function <code>TermDocumentMatrix</code>.</p>
+<p>A term document matrix (TDM) is a sparse matrix that contains the
+word frequency of a set of words across each document in question.
+Typically the columns are words, and the rows refer to the documents
+they could appear in.</p>
+<pre class="r"><code>tdm &lt;- TermDocumentMatrix(wordCorpus)</code></pre>
 </div>
 <div id="question-6" class="section level1">
 <h1>Question 6</h1>
@@ -424,6 +442,13 @@ the frequency of occurrence of each word in the news headlines in an
 object named <code>wordCounts</code>. Return the top 10 most frequent
 words. (Note: if you run into memory issues creating the matrix
 <code>m</code>, try using one of the computers in Tome.)</p>
+<pre class="r"><code>m &lt;- as.matrix(tdm)
+wordCounts &lt;- rowSums(m)
+head(sort(wordCounts, decreasing = TRUE), n=10)</code></pre>
+<pre><code>##     police        man        new       says      court  australia    council 
+##        338        251        241        176        159        141        138 
+##       fire australian       govt 
+##        132        126        123</code></pre>
 </div>
 <div id="question-7" class="section level1">
 <h1>Question 7</h1>

@@ -32,8 +32,8 @@ Read the `news.csv` into R and create the object `news` using
 
 ```{r}
 # library(tidyverse)
-# library(dplyr) # I added this so it would knit properly
-# library(tm)
+library(dplyr) # I added this so it would knit properly
+library(tm)
 setwd("C:/Users/Peter/Documents/College Documents/DATA 180/Data 180 Peter Guma/DATA-180-PETER-GUMA/hw7")
 news<-read.csv("news.csv",header=T)
 ```
@@ -95,14 +95,16 @@ Convert `tdm` into a matrix named `m`. Store the frequency of occurrence of each
 ```{r}
 m <- as.matrix(tdm)
 wordCounts <- rowSums(m)
-head(sort(wordCounts, decreasing = TRUE), n=10)
+sortedWordCounts <- sort(wordCounts, decreasing = TRUE)
+head(sortedWordCounts, n=10)
 ```
 
 # Question 7
 Create a barplot of the words that showed up at least 50 times in the news headlines. Rotate the x axis labels by 90 degrees, and decrease the label font size by 25%.
 
 ```{r}
-
+barplot(as.matrix(filter(as.data.frame(m), m$wordCounts >=50)), xlab="Words", ylab="Frequency")
+# ggplot(wordCounts, aes()) + geom_bar()
 ```
 
 
