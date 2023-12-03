@@ -51,19 +51,21 @@ head(negWords,15)
 # Question 1
 First, check how many years of news data we have loaded in in R.
 ```{r}
-
+nrow(news)
 ```
 
 # Question 2
 Store the headlines column in a vector of text named `charVector`. Print the first 6 entries in the vector.
 ```{r}
-
+charVector <- news$headline_text
+head(charVector)
 ```
 
 # Question 3
 Convert `charVector` into a vector source object named `wordVector` using the function `VectorSource()`. (See class notes on how to do this) Then convert `wordVector` into a corpus object named `wordCorpus` using the function `Corpus()`.
 ```{r}
-
+wordVector <- VectorSource(charVector)
+wordCorpus <- Corpus(wordVector)
 ```
 
 # Question 4
