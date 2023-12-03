@@ -2,8 +2,8 @@
 title: "HW 7"
 subtitle: "Data 180, Professor Kennedy"
 author: 
-  name: "Your Name"
-  email: "XXXX@dickinson.edu"
+  name: "Peter Guma"
+  email: "gumap@dickinson.edu"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: 
   html_document
@@ -31,8 +31,10 @@ In this homework, we will analyze news headlines data scraped from abcnews, post
 Read the `news.csv` into R and create the object `news` using
 
 ```{r}
-#library(tidyverse)
-library(tm)
+# library(tidyverse)
+# library(dplyr) # I added this so it would knit properly
+# library(tm)
+setwd("C:/Users/Peter/Documents/College Documents/DATA 180/Data 180 Peter Guma/DATA-180-PETER-GUMA/hw7")
 news<-read.csv("news.csv",header=T)
 ```
 
@@ -118,7 +120,7 @@ Let's now practice working with `quanteda` and `corpus` packages. Install the pa
 
 ```{r}
 library("quanteda")
-library('corpus')
+# library('corpus')
 ```
 
 # Question 10
