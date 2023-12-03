@@ -76,19 +76,26 @@ We are now ready to do some basic trimming on the text. Do the following on the 
 * Remove stopwords (e.g., the, a, at, etc.)
 
 ```{r}
-
+wordCorpus <- tm_map(wordCorpus, tolower)
+wordCorpus <- tm_map(wordCorpus, removePunctuation)
+wordCorpus <- tm_map(wordCorpus, removeNumbers)
+wordCorpus <- tm_map(wordCorpus, removeWords, stopwords("en"))
 ```
 
 # Question 5
 What is a term document matrix? Explain. Create a term document matrix from the news vector and store it as an object named `tdm` using the function `TermDocumentMatrix`.
-```{r}
 
+A term document matrix (TDM) is a sparse matrix that contains the word frequency of a set of words across each document in question. Typically the columns are words, and the rows refer to the documents they could appear in.
+```{r}
+tdm <- TermDocumentMatrix(wordCorpus)
 ```
 
 # Question 6
 Convert `tdm` into a matrix named `m`. Store the frequency of occurrence of each word in the news headlines in an object named `wordCounts`. Return the top 10 most frequent words. (Note: if you run into memory issues creating the matrix `m`, try using one of the computers in Tome.)
 ```{r}
-
+m <- as.matrix(tdm)
+wordCounts <- rowSums(m)
+head(sort(wordCounts, decreasing = TRUE), n=10)
 ```
 
 # Question 7
