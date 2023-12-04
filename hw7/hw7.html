@@ -364,7 +364,7 @@ display: none;
 abcnews, posted on Github in a csv file named <code>news.csv</code>.</p>
 <p>Read the <code>news.csv</code> into R and create the object
 <code>news</code> using</p>
-<pre class="r"><code># library(tidyverse)
+<pre class="r"><code>library(tidyverse)
 library(dplyr) # I added this so it would knit properly
 library(tm)
 setwd(&quot;C:/Users/Peter/Documents/College Documents/DATA 180/Data 180 Peter Guma/DATA-180-PETER-GUMA/hw7&quot;)
@@ -444,7 +444,8 @@ words. (Note: if you run into memory issues creating the matrix
 <code>m</code>, try using one of the computers in Tome.)</p>
 <pre class="r"><code>m &lt;- as.matrix(tdm)
 wordCounts &lt;- rowSums(m)
-head(sort(wordCounts, decreasing = TRUE), n=10)</code></pre>
+sortedWordCounts &lt;- sort(wordCounts, decreasing = TRUE)
+head(sortedWordCounts, n=10)</code></pre>
 <pre><code>##     police        man        new       says      court  australia    council 
 ##        338        251        241        176        159        141        138 
 ##       fire australian       govt 
@@ -455,6 +456,8 @@ head(sort(wordCounts, decreasing = TRUE), n=10)</code></pre>
 <p>Create a barplot of the words that showed up at least 50 times in the
 news headlines. Rotate the x axis labels by 90 degrees, and decrease the
 label font size by 25%.</p>
+<pre class="r"><code># barplot(as.matrix(filter(as.data.frame(m), m$wordCounts &gt;=50)), xlab=&quot;Words&quot;, ylab=&quot;Frequency&quot;)
+# ggplot(wordCounts, aes()) + geom_bar()</code></pre>
 </div>
 <div id="question-8" class="section level1">
 <h1>Question 8</h1>

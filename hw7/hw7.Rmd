@@ -31,7 +31,7 @@ In this homework, we will analyze news headlines data scraped from abcnews, post
 Read the `news.csv` into R and create the object `news` using
 
 ```{r}
-# library(tidyverse)
+library(tidyverse)
 library(dplyr) # I added this so it would knit properly
 library(tm)
 setwd("C:/Users/Peter/Documents/College Documents/DATA 180/Data 180 Peter Guma/DATA-180-PETER-GUMA/hw7")
@@ -103,7 +103,7 @@ head(sortedWordCounts, n=10)
 Create a barplot of the words that showed up at least 50 times in the news headlines. Rotate the x axis labels by 90 degrees, and decrease the label font size by 25%.
 
 ```{r}
-barplot(as.matrix(filter(as.data.frame(m), m$wordCounts >=50)), xlab="Words", ylab="Frequency")
+barplot(sortedWordCounts[sortedWordCounts>=50], ylab="Frequency", las=2, cex.names=.75, ylim=c(0,350), main="Words Appearing 50+ Times in News Headlines")
 # ggplot(wordCounts, aes()) + geom_bar()
 ```
 
