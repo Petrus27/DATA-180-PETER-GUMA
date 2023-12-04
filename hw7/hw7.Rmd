@@ -149,6 +149,14 @@ news <- news %>% group_by(year,month) %>% mutate(count=n(), yearmonth = paste(ye
 Using `ggplot2`, create a barplot for the frequency of articles released in each year and month. On the x axis, you should have year month, e.g., 2003/10, 2003/11, 2003/12, 2004/1, on the y-axis you should have the number of articles released in the data. Do you see a change in the number of articles released across years? (Hint: use `factor()` with `levels=` options specified when you call `aes(x=)` to have a proper chronological sorting on your x axis. Use `+theme(axis.text=element_text(size=4,angle=90)` to fit the dates on the x axis.)
 
 ```{r}
+news$yearmonth
+head(news)
+neg_match <- match(news$yearmonth, , nomatch = 0)
+neg_match <- neg_match != 0
+neg_match <- wordCounts[neg_match]
+
+aggregate(news, by=list(yearmonth=news$yearmonth), FUN=sum)
+ggplot(news, aes(x=news$yearmonth, y=news[])) + geom_bar()
 ```
 
 Let's now practice working with `quanteda` and `corpus` packages. Install the packages first if you don't have them in your computer and load them in in R.
