@@ -112,8 +112,32 @@ barplot(sortedWordCounts[sortedWordCounts>=50], ylab="Frequency", las=2, cex.nam
 What is the percentage of positive words in the news headlines? What is the percentage of negative words? Make a barplot for each (for positive and negative words that showed up separately) showing the most frequent words for words that showed up at least 20 times. (Note: don't forget to get the total number of unique words that showed up in the data.)
 
 ```{r}
+totalUnique = nrow(unique(m))
+num_pos <- 0
+num_neg <- 0
 
+# for (i in posWords) {
+#  if (posWords[i] %in% unique(m)) {
+#      num_pos <- num_pos+1 }
+#}
+
+pos_match <- match(names(wordCounts), posWords, nomatch = 0)
+pos_match <- pos_match != 0
+pos_match <- wordCounts[pos_match]
+pos_match
+
+neg_match <- match(names(wordCounts), negWords, nomatch = 0)
+neg_match <- neg_match != 0
+neg_match <- wordCounts[neg_match]
+neg_match
+
+pct_pos <- sum(pos_match)/totalUnique
+pct_neg <- sum(neg_match)/totalUnique
+
+barplot(sort(pos_match[pos_match>=20], decreasing=TRUE), ylab="Frequency", las=2, ylim=c(0,80), main="Positive Words Appearing 20+ Times in Headlines")
+barplot(sort(neg_match[neg_match>=20], decreasing=TRUE), ylab="Frequency", las=2, ylim=c(0,120), main="Negative Words Appearing 20+ Times in Headlines")
 ```
+The percentage of positive words in news headlines is 18.5%, and the percentage of negative words is 38.5%.
 
 Let's get the number of articles published in each year and month. Note that the chunk below creates two new variables `count` and `yearmonth`:
 
