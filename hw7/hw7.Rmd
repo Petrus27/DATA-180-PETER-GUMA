@@ -182,6 +182,11 @@ topfeatures(dfm, n=20)
 # Question 11
 Repeat the previous question for word pairs (frequency of 2 words that show up, instead of 1 word)
 ```{r}
+dfm2 <- tokens_select(tokens(corpus(newCharVector), remove_symbols=TRUE, remove_punct=TRUE), pattern=stopwords("en"), selection="remove") %>%
+  tokens_ngrams(n = 2) %>%
+  dfm()
+
+topfeatures(dfm2, n=20)
 ```
 
 # Question 12
