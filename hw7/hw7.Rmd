@@ -164,7 +164,7 @@ Let's now practice working with `quanteda` and `corpus` packages. Install the pa
 
 ```{r}
 library("quanteda")
-# library('corpus')
+# library("corpus") # no longer available
 ```
 
 # Question 10
@@ -174,7 +174,9 @@ Using the `term_stats()` function, return the 20 most frequent single words that
 * stopwords
 
 ```{r}
+dfm <- dfm(newCharVector, remove=stopwords("en"), remove_punct=TRUE, remove_symbols=TRUE)
 
+topfeatures(dfm, n=20)
 ```
 
 # Question 11
