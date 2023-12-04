@@ -113,8 +113,8 @@ What is the percentage of positive words in the news headlines? What is the perc
 
 ```{r}
 totalUnique = nrow(unique(m))
-num_pos <- 0
-num_neg <- 0
+#num_pos <- 0
+#num_neg <- 0
 
 # for (i in posWords) {
 #  if (posWords[i] %in% unique(m)) {
@@ -151,8 +151,6 @@ Using `ggplot2`, create a barplot for the frequency of articles released in each
 ```{r}
 ggplot(news, aes(x=factor(yearmonth, levels = unique(yearmonth)))) + geom_bar() + theme(axis.text=element_text(size=4,angle=90))
 
-newCharVector <- news$headline_text # had to put this here instead of in task 10 because otherwise it won't knit (no idea why)
-
 # news$yearmonth
 # head(news)
 
@@ -175,7 +173,9 @@ Using the `term_stats()` function, return the 20 most frequent single words that
 * symbols
 * stopwords
 
-```
+```{r}
+newCharVector <- news$headline_text
+
 dfm <- dfm(newCharVector, remove=stopwords("en"), remove_punct=TRUE, remove_symbols=TRUE)
 
 topfeatures(dfm, n=20)
@@ -214,8 +214,9 @@ Create a wordcloud of `news_dtm` using `textplot_wordcloud()`. Comment on words 
 ```{r}
 library("quanteda.textplots")
 
+textplot_wordcloud(news_dtm)
 ```
-
+I was not surprised to see "police", "man", "says", "govt", and anything related to Australia. Rather, I was surprised to see foreign countries like "us" and "china", since the dataset seemed to be more oriented towards domestic (i.e., Australian) news. Overall, the words listed and their relative frequencies seem very reasonable.
 
 Let's now do topic modeling. Make sure to load necessary packages via
 
