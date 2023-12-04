@@ -151,6 +151,8 @@ Using `ggplot2`, create a barplot for the frequency of articles released in each
 ```{r}
 ggplot(news, aes(x=factor(yearmonth, levels = unique(yearmonth)))) + geom_bar() + theme(axis.text=element_text(size=4,angle=90))
 
+newCharVector <- news$headline_text # had to put this here instead of in task 10 because otherwise it won't knit (no idea why)
+
 # news$yearmonth
 # head(news)
 
@@ -193,8 +195,8 @@ topfeatures(dfm2, n=20)
 Create a corpus object using `corpus()` function. Store it in an object named `newscorpus`. Convert `newscorpus` into paragraphs with `corpus_reshape()`.
 ```{r}
 newscorpus <- corpus(newCharVector)
+newscorpus <- corpus_reshape(newscorpus, to="paragraphs")
 head(newscorpus)
-corpus_reshape(newscorpus, to="paragraphs")
 ```
 
 # Question 13
