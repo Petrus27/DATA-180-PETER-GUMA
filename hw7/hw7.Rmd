@@ -173,7 +173,7 @@ Using the `term_stats()` function, return the 20 most frequent single words that
 * symbols
 * stopwords
 
-```{r}
+```
 dfm <- dfm(newCharVector, remove=stopwords("en"), remove_punct=TRUE, remove_symbols=TRUE)
 
 topfeatures(dfm, n=20)
@@ -192,6 +192,9 @@ topfeatures(dfm2, n=20)
 # Question 12
 Create a corpus object using `corpus()` function. Store it in an object named `newscorpus`. Convert `newscorpus` into paragraphs with `corpus_reshape()`.
 ```{r}
+newscorpus <- corpus(newCharVector)
+head(newscorpus)
+corpus_reshape(newscorpus, to="paragraphs")
 ```
 
 # Question 13
