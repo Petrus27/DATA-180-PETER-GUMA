@@ -256,7 +256,19 @@ barplot(topic_terms$beta, xlab="Top 10 Words by Topic", ylab="Beta", main="Top 1
 # Question 16
 Plot gammas of top 5 documents with highest gamma for each 8 topic. Return the contents of the 5 documents with highest gamma only for topics 1 and 2. Does it makes sense that these documents are assigned to topics 1 and 2 accordingly? Comment.
 ```{r}
+topics_g <- tidy(topic_model, matrix = "gamma")
+topics_g
 
+topic_terms_g <- topics_g %>%
+  group_by(topic) %>%
+  top_n(5, gamma) %>%
+  ungroup() %>%
+  arrange(topic, -gamma)
+
+topic_terms_g
+
+barplot(topic_terms_g$gamma, xlab="Top 5 Documents by Topic", ylab="Gamma", main="Top 10 Words with Highest Gamma for 8 Topics", col=c(topic_terms$topic))
+# wrong number of documents
 ```
 
 
