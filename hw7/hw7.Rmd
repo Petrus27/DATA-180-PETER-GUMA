@@ -229,7 +229,22 @@ library('tidytext')
 Run the LDA algorithm using k = 8. Store your output in object named `topic_model`. Print the 10 most frequent words that occurred in each 8 topic.
 
 ```{r}
+library("reshape2")
 
+topic_model <- LDA(news_dtm, k=8)
+
+topics <- tidy(topic_model, matrix = "beta")
+topics
+
+topic_terms <- topics %>%
+  group_by(topic) %>%
+  top_n(10, beta) %>%
+  ungroup() %>%
+  arrange(topic, -beta)
+
+topic_terms
+
+# top_n(topic_model, n=10)
 ```
 
 
