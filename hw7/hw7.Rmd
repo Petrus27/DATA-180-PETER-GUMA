@@ -203,8 +203,8 @@ head(newscorpus)
 # Question 13
 Create a term document matrix named `news_dtm` by using the `dfm()` function. While you call `dfm()`, make sure to clean the paragraphs by keeping only the stems of the words, removing punctuations, removing symbols, removing numbers, and removing stopwords. If you wish to get rid of anything that does not look correct in the data (such as weird bunch of characters that show up as "words") you may trim them out at this stage using `dfm_remove()`. Finally, trim `news_dtm` such that it contains only words that show up at least 50 times. Print the first 6 rows of `news_dtm`. (Note: Again, ignore warnings.)
 ```{r}
-news_dtm <- dfm(newCharVector, remove=stopwords("en"), remove_punct=TRUE, remove_symbols=TRUE, remove_numbers=TRUE, stem=TRUE)
-news_dtm <- dfm_trim(news_dtm, min_termfreq = 50)
+untrimmed_news_dtm <- dfm(newCharVector, remove=stopwords("en"), remove_punct=TRUE, remove_symbols=TRUE, remove_numbers=TRUE, stem=TRUE)
+news_dtm <- dfm_trim(untrimmed_news_dtm, min_termfreq = 50)
 head(news_dtm)
 ```
 
@@ -230,7 +230,7 @@ Run the LDA algorithm using k = 8. Store your output in object named `topic_mode
 ```{r}
 library("reshape2")
 
-topic_model <- LDA(news_dtm, k=8)
+topic_model <- LDA(untrimmed_news_dtm, k=8)
 
 topics <- tidy(topic_model, matrix = "beta")
 topics
