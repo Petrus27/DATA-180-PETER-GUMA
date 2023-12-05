@@ -244,7 +244,6 @@ topic_terms <- topics %>%
 topic_terms
 ```
 
-
 # Question 15
 Plot betas of top 10 words with highest beta for each 8 topic. Comment on 3-4 news headline groups in terms of their topic content.
 ```{r}
@@ -256,6 +255,7 @@ topic_terms %>%
   facet_wrap(~topic, scales = "free") +
   scale_y_reordered()
 ```
+Group 1 seems to be mostly about emergencies involving police and courts. Group 6 is about people (specifically men) in NSW, Australia involved in politics. Group 7 does not have a clear topic, but "murder" and "dead" seem to come up a lot, along with legal issues.
 
 # Question 16
 Plot gammas of top 5 documents with highest gamma for each 8 topic. Return the contents of the 5 documents with highest gamma only for topics 1 and 2. Does it makes sense that these documents are assigned to topics 1 and 2 accordingly? Comment.
