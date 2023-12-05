@@ -243,15 +243,14 @@ topic_terms <- topics %>%
   arrange(topic, -beta)
 
 topic_terms
-
-# top_n(topic_model, n=10)
 ```
 
 
 # Question 15
 Plot betas of top 10 words with highest beta for each 8 topic. Comment on 3-4 news headline groups in terms of their topic content.
 ```{r}
-
+barplot(topic_terms$beta, xlab="Top 10 Words by Topic", ylab="Beta", main="Top 10 Words with Highest Beta for 8 Topics", col=c(topic_terms$topic))
+# need to figure out x labels
 ```
 
 # Question 16
