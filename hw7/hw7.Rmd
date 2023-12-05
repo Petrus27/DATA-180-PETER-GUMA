@@ -51,8 +51,9 @@ head(negWords,15)
 # Question 1
 First, check how many years of news data we have loaded in in R.
 ```{r}
-nrow(news)
+length(unique(news$year))
 ```
+We have 19 years of news data.
 
 # Question 2
 Store the headlines column in a vector of text named `charVector`. Print the first 6 entries in the vector.
@@ -104,7 +105,6 @@ Create a barplot of the words that showed up at least 50 times in the news headl
 
 ```{r}
 barplot(sortedWordCounts[sortedWordCounts>=50], ylab="Frequency", las=2, cex.names=.75, ylim=c(0,350), main="Words Appearing 50+ Times in News Headlines")
-# ggplot(wordCounts, aes()) + geom_bar()
 ```
 
 
@@ -113,6 +113,7 @@ What is the percentage of positive words in the news headlines? What is the perc
 
 ```{r}
 totalUnique = nrow(unique(m))
+
 #num_pos <- 0
 #num_neg <- 0
 
@@ -214,7 +215,7 @@ library("quanteda.textplots")
 
 textplot_wordcloud(news_dtm)
 ```
-I was not surprised to see "police", "man", "says", "govt", and anything related to Australia. Rather, I was surprised to see foreign countries like "us" and "china", since the dataset seemed to be more oriented towards domestic (i.e., Australian) news. Overall, the words listed and their relative frequencies seem very reasonable.
+I was not surprised to see "police", "man", "says", "govt", and anything related to Australia. Instead, I was surprised to see foreign countries like "us" and "china", since the dataset seemed to be more oriented towards domestic (i.e., Australian) news. Overall, the words listed and their relative frequencies seem very reasonable.
 
 Let's now do topic modeling. Make sure to load necessary packages via
 
