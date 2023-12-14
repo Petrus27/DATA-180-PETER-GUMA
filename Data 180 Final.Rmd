@@ -17,5 +17,43 @@ knitr::opts_chunk$set(
 ```
 
 ```{r}
-
+data <- read.csv("loan_default_data_set.csv")
+dim(data)
 ```
+
+1. Data wrangling:
+
+a. What is the dimension (shape) of the dataset?  How many rows and columns does the data set have?
+
+b. Report the column names of the data set.
+
+c. Which types of data are there in the dataset? Numeric, categorical, ordinal?
+
+d. Which columns contain missing values and how much (what percent) of those columns are missing?
+
+e. How do you think we should deal with missing values? 
+
+f. With this data, would you fit a supervised or an unsupervised learning model? Why? 
+
+g. For part 2 and 3 drop all rows of the data that contain missing values. Print the dimensions of the resulting data set that has no missing values.
+
+2. Data summary statistics:
+
+a. Find the summary statistics of the data set. You can use the summary function from dplyr. 
+
+b. Based on the mean, mode, and median, is “num_card_inq_24_month” bell shaped, left, right skewed? How about “tot_amount_currently_past_due”? “credit_age”? 
+
+c. Plot a histogram of the variables in b above. Do the shapes of the histograms confirm the skewness you found in b?
+
+d. How would your convert the “rep_education” column into numerical data? Name two ways. 
+
+3. Data Visualization:
+For every graph in this section, remember to label your axes and to include a title. Feel free to play around with graphics and parameters. Have fun and explore!
+
+a. Plot a bar graph for the “Def_Ind” column and describe it. 
+
+b. Plot a bar graph for the “rep_education" column and describe it. 
+
+c. Plot a histogram of the “rep_income” variable.
+
+d. Plot a boxplot of the “tot_balance” variable. Using the box plot report the five number summary of the variable? Are there any outliers for this variable?
