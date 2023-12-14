@@ -100,8 +100,9 @@ For every graph in this section, remember to label your axes and to include a ti
 
 a. Plot a bar graph for the “Def_Ind” column and describe it. 
 ```{r}
-
+barplot(table(refined_data$Def_ind), names.arg=c("Not Defaulted", "Defaulted"), xlab="Indicator of Default", ylab="Frequency", main="Accounts that Defaulted in the Past 18 Months", ylim=c(0,16000), col=c("green2","red2"))
 ```
+As the bar graph shows, approximately 15000 accounts did not default after being approved and opened with Bank XYZ in the past 18 months; around 1600 accounts did. Specifically, those 1600 accounts have not made payments in the last three months. While it is reassuring that most accounts have not defaulted, the bank should work to shrink the second bar as much as possible because defaulting can be quite costly for lenders.
 
 b. Plot a bar graph for the “rep_education" column and describe it. 
 ```{r}
