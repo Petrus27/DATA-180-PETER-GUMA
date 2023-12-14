@@ -42,19 +42,18 @@ The column names are tot_balance, avg_bal_cards, credit_age, credit_age_good_acc
 
 c. Which types of data are there in the dataset? Numeric, categorical, ordinal?
 
-The dataset consists primarily of quantitative (i.e., numeric) data, including all the information associated with the variable tot_balance. However, Def_Ind is an nominal variable: either the user did or did not default, and there is no natural ordering. While we may be tempted to label rep_education as an ordinal variable because there are increasing levels of education, the "other" category has no clear place in that system. I would argue that the dataset contains only numeric and nominal categorical data.
+The dataset consists primarily of quantitative (i.e., numeric) data, such as the information associated with the variable tot_balance. However, Def_Ind is a nominal variable: either the user did or did not default, and there is no natural ordering. While we may be tempted to label rep_education as an ordinal variable because there are increasing levels of education, the "other" category has no clear place in that system. I would argue that the dataset contains only numeric and nominal categorical data.
 
 d. Which columns contain missing values and how much (what percent) of those columns are missing?
 ```{r}
 # is.na(data) #hidden for knit
 sum(is.na(data$pct_card_over_50_uti))/20000
 sum(is.na(data$rep_income))/20000
-#nrow(is.na(data$pct_card_over_50_uti[data$pct_card_over_50_uti == TRUE]))
-#length(data[data$pct_card_over_50_uti==TRUE])
 ```
 The only columns which contain missing values are pct_card_over_50_uti and rep_income. The former consists of $9.79\%$ missing values, while the latter column is $7.795\%$ missing.
 
-e. How do you think we should deal with missing values? 
+e. How do you think we should deal with missing values?
+
 One approach to dealing with missing values is to remove those rows altogether. The problem is that doing so means throwing away customer data, which is inadvisable. Removing the columns would be even worse, affecting every customer's record. Alternatively, we could replace every missing value with a placeholder like NA or 0, but that could impede data analysis. Removing the affected rows is probably our best bet in this scenario.
 
 f. With this data, would you fit a supervised or an unsupervised learning model? Why? 
@@ -106,8 +105,9 @@ As the bar graph shows, approximately 15000 accounts did not default after being
 
 b. Plot a bar graph for the “rep_education" column and describe it. 
 ```{r}
-
+barplot(sort(table(refined_data$rep_education), decreasing=TRUE), names.arg=c("College", "High School", "Graduate", "Other"), xlab="Education Level", ylab="Frequency", main="Education Level Self-Reported by Applicants", ylim=c(0,12000), col=c(2,3,4,5))
 ```
+As we see in the graph, approximately 10000 applicants have received a college education, followed by 4000 with a high-school diploma or less, 2000 with a graduate degree, and a tiny percentage with another education level. Bank XYZ should tailor its marketing to high-schoolers and graduate degree holders to increase its market share of those demographics.
 
 c. Plot a histogram of the “rep_income” variable.
 ```{r}
