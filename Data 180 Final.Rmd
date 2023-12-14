@@ -58,7 +58,7 @@ One approach to dealing with missing values is to remove those rows altogether. 
 
 f. With this data, would you fit a supervised or an unsupervised learning model? Why? 
 
-I think an unsupervised learning model would be better here because that could help us understand the structure of our multivariable dataset. If we were to conduct supervised learning, we would need to have a specific goal in mind; for example, you could make the case for rep_education predicting rep_income, or vice versa. What we get out of such a model depends on how we designate our variables (predictor or response). Unsupervised learning lacks this drawback. Applying the unsupervised technique of clustering could reveal a strong correlation between two variables that we would otherwise not think of.
+I think a supervised learning model would be better here because we have 20 predictor variables and a clear response variable that we want to predict, namely whether an applicant is likely to default on their account. While an unsupervised learning model could help us understand the structure of our multivariable dataset, going in with a specific goal in mind reduces its utility. In other words, that is not our primary goal. Understanding the relationship between any two or more variables is less important than whether a particular combination of variables predicts Def_Ind, which is what supervised learning could get us.
 
 g. For part 2 and 3 drop all rows of the data that contain missing values. Print the dimensions of the resulting data set that has no missing values.
 ```{r}
