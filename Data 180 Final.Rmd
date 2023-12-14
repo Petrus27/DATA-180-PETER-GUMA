@@ -24,6 +24,8 @@ knitr::opts_chunk$set(
 
 ```{r}
 data <- read.csv("loan_default_data_set.csv")
+library(dplyr)
+library(ggplot2)
 ```
 
 1. Data wrangling:
@@ -70,18 +72,22 @@ The new data set without missing values has dimensions 16653x21.
 
 a. Find the summary statistics of the data set. You can use the summary function from dplyr. 
 ```{r}
-
+summary(refined_data)
 ```
 
 b. Based on the mean, mode, and median, is “num_card_inq_24_month” bell shaped, left, right skewed? How about “tot_amount_currently_past_due”? “credit_age”? 
-```{r}
 
-```
+num_card_inq_24_month and tot_amount_currently_past_due are both right skewed because their corresponding median is considerably lower than their mean, adjusting for the range. In contrast, credit_age is approximately bell shaped: the mean and the median are almost equal, that is, only about one month apart when the range is 550 months.
 
 c. Plot a histogram of the variables in b above. Do the shapes of the histograms confirm the skewness you found in b?
 ```{r}
+hist(refined_data$num_card_inq_24_month, xlab="Number of Credit Card Inquiries (in months)", main="Number of Credit Card Inquiries in Last 24 Months", xlim=c(0,10), ylim=c(0,14000), col="salmon")
 
+hist(refined_data$tot_amount_currently_past_due, xlab="Total Amount Past Due", main="Total Amount Past Due for All Credit Accounts", xlim=c(0,12000), ylim=c(0,20000), col="orange")
+
+hist(refined_data$credit_age, xlab="Age of Oldest Credit Card (in months)", main="Age of Applicant's Oldest Credit Card", xlim=c(0,600), ylim=c(0,5000), col="red3")
 ```
+Yes, the shapes of the histograms confirm the skewness I found in part b.
 
 d. How would your convert the “rep_education” column into numerical data? Name two ways. 
 
