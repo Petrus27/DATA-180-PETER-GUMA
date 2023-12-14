@@ -369,12 +369,8 @@ columns does the data set have?</li>
 </ol>
 <pre class="r"><code>dim(data)</code></pre>
 <pre><code>## [1] 20000    21</code></pre>
-<pre class="r"><code>nrow(data)</code></pre>
-<pre><code>## [1] 20000</code></pre>
-<pre class="r"><code>ncol(data)</code></pre>
-<pre><code>## [1] 21</code></pre>
-<p>The dimension of the dataset is 21. It has 20000 rows and 21
-columns.</p>
+<p>The dimension of the dataset is 20000x21. That is, it has 20000 rows
+and 21 columns.</p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li><p>Report the column names of the data set. The column names are
 tot_balance, avg_bal_cards, credit_age, credit_age_good_account,
@@ -385,9 +381,28 @@ num_card_12_month, num_auto_36_month, uti_open_card, pct_over_50_uti,
 uti_max_credit_line, pct_card_over_50_uti, ind_XYZ, rep_income,
 rep_education, and Def_ind.</p></li>
 <li><p>Which types of data are there in the dataset? Numeric,
-categorical, ordinal?</p></li>
+categorical, ordinal? The dataset consists primarily of quantitative
+(i.e., numeric) data, including all the information associated with the
+variable tot_balance. However, Def_Ind is an nominal variable: either
+the user did or did not default, and there is no natural ordering. While
+we may be tempted to label rep_education as an ordinal variable because
+there are increasing levels of education, the “other” category has no
+clear place in that system. I would argue that the dataset contains only
+numeric and nominal categorical data.</p></li>
 <li><p>Which columns contain missing values and how much (what percent)
 of those columns are missing?</p></li>
+</ol>
+<pre class="r"><code># is.na(data) #hidden for knit
+sum(is.na(data$pct_card_over_50_uti))/20000</code></pre>
+<pre><code>## [1] 0.0979</code></pre>
+<pre class="r"><code>sum(is.na(data$rep_income))/20000</code></pre>
+<pre><code>## [1] 0.07795</code></pre>
+<pre class="r"><code>#nrow(is.na(data$pct_card_over_50_uti[data$pct_card_over_50_uti == TRUE]))
+#length(data[data$pct_card_over_50_uti==TRUE])</code></pre>
+<p>The only columns which contain missing values are
+pct_card_over_50_uti and rep_income. The former consists of <span class="math inline">\(9.79\%\)</span> missing values, while the latter
+column is <span class="math inline">\(7.795\%\)</span> missing.</p>
+<ol start="5" style="list-style-type: lower-alpha">
 <li><p>How do you think we should deal with missing values?</p></li>
 <li><p>With this data, would you fit a supervised or an unsupervised
 learning model? Why?</p></li>

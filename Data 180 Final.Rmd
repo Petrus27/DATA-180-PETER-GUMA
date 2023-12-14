@@ -42,13 +42,16 @@ The dataset consists primarily of quantitative (i.e., numeric) data, including a
 
 d. Which columns contain missing values and how much (what percent) of those columns are missing?
 ```{r}
-is.na(data)
-nrow(is.na(data$pct_card_over_50_uti[data$pct_card_over_50_uti == TRUE]))
-length(data[data$pct_card_over_50_uti==TRUE])
+# is.na(data) #hidden for knit
+sum(is.na(data$pct_card_over_50_uti))/20000
+sum(is.na(data$rep_income))/20000
+#nrow(is.na(data$pct_card_over_50_uti[data$pct_card_over_50_uti == TRUE]))
+#length(data[data$pct_card_over_50_uti==TRUE])
 ```
-The only columns which contain missing values are pct_card_over_50_uti and rep_income.
+The only columns which contain missing values are pct_card_over_50_uti and rep_income. The former consists of $9.79\%$ missing values, while the latter column is $7.795\%$ missing.
 
 e. How do you think we should deal with missing values? 
+Removing missing values is one approach we could take. The problem with that is throwing away customer data would be unwise. Alternatively, 
 
 f. With this data, would you fit a supervised or an unsupervised learning model? Why? 
 
