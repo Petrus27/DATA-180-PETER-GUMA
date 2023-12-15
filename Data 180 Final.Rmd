@@ -101,13 +101,13 @@ a. Plot a bar graph for the “Def_Ind” column and describe it.
 ```{r}
 barplot(table(refined_data$Def_ind), names.arg=c("Not Defaulted", "Defaulted"), xlab="Indicator of Default", ylab="Frequency", main="Accounts that Defaulted in the Past 18 Months", ylim=c(0,16000), col=c("green2","red2"))
 ```
-As the bar graph shows, approximately 15000 accounts did not default after being approved and opened with Bank XYZ in the past 18 months; around 1600 accounts did. Specifically, those 1600 accounts have not made payments in the last three months. While it is reassuring that most accounts have not defaulted, the bank should work to shrink the second bar as much as possible because defaulting can be quite costly for lenders. Also, dividing the historical number of defaulted accounts by the total number of accounts suggests that the bank should deny the approximately 9-10% of applicants who will be most likely to default.
+As the bar graph shows, approximately 15000 accounts did not default after being approved and opened with Bank XYZ in the past 18 months; around 1600 accounts did. Specifically, those 1600 accounts have not made payments in the last three months. While it is reassuring that most accounts have not defaulted, going forward, the bank should work to shrink the second bar as much as possible because defaulting can be quite costly for lenders. Also, dividing the historical number of defaulted accounts by the total number of accounts suggests that the bank should deny the approximately 9-10% of applicants who will be most likely to default.
 
 b. Plot a bar graph for the “rep_education" column and describe it. 
 ```{r}
 barplot(sort(table(refined_data$rep_education), decreasing=TRUE), names.arg=c("College", "High School", "Graduate", "Other"), xlab="Education Level", ylab="Frequency", main="Education Level Self-Reported by Applicants", ylim=c(0,12000), col=c(2,3,4,5))
 ```
-As we see in the graph, approximately 10000 applicants have received a college education, followed by 4000 with a high-school diploma or less, 2000 with a graduate degree, and a tiny percentage with another education level. Bank XYZ should tailor its marketing to high-schoolers and graduate degree holders to increase its market share of those demographics.
+As we see in the graph, approximately 10000 applicants have received a college education, followed by 4000 with a high-school diploma or less, 2000 with a graduate degree, and a tiny percentage with another education level. Bank XYZ may want to tailor its marketing to high-schoolers and graduate degree holders to increase its market share of those demographics. However, this information on its own is not particularly helpful for deciding which new applicants to accept. While the majority of people did not default, and the majority of applicants reported their education level as "college", being in any particular demographic group should not qualify or disqualify any applicant without considering their other credentials.
 
 c. Plot a histogram of the “rep_income” variable.
 ```{r}
