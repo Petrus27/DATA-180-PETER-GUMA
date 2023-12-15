@@ -34,7 +34,7 @@ a. What is the dimension (shape) of the dataset?  How many rows and columns does
 ```{r}
 dim(data)
 ```
-The dimensions of the dataset are 20000x21. That is, it has 20000 rows and 21 columns.
+The dimension of the dataset is 21. It has 20000 rows and 21 columns.
 
 b. Report the column names of the data set.
 
@@ -58,7 +58,7 @@ One approach to dealing with missing values is to remove those rows altogether. 
 
 f. With this data, would you fit a supervised or an unsupervised learning model? Why? 
 
-I think a supervised learning model would be better here because we have 20 predictor variables and a clear response variable that we want to predict, namely whether an applicant is likely to default on their account. While an unsupervised learning model could help us understand the structure of our multivariable dataset, going in with a specific goal in mind reduces its utility. In other words, that is not our primary goal. Understanding the relationship between any two or more variables is less important than whether a particular combination of variables predicts Def_Ind, which is what supervised learning could get us.
+I think a supervised learning model would be better here because we have 20 predictor variables and a clear response variable that we want to predict, namely whether an applicant is likely to default on their account. While an unsupervised learning model could help us understand the structure of our multivariable dataset, going in with a specific goal in mind reduces its utility (that is not our primary goal). Understanding the relationship between any two or more variables is less important than whether a particular combination of variables predicts Def_Ind, which is what supervised learning could get us.
 
 g. For part 2 and 3 drop all rows of the data that contain missing values. Print the dimensions of the resulting data set that has no missing values.
 ```{r}
@@ -90,7 +90,7 @@ Yes, the shapes of the histograms confirm the skewness I found in part b.
 
 d. How would your convert the “rep_education” column into numerical data? Name two ways. 
 
-To convert the rep_education column into numerical data, I could assign an integer ranging from 0 to 3 to each category. What level of education maps to a given integer is flexible, though I would probably go in order of increasing education and designate "other" as a 3 because it could conceivably be at or higher than a standard graduate degree. In any case, it would probably make sense to put "high-school or below" at the bottom, at 0.
+To convert the rep_education column into numerical data, I could assign an integer ranging from 0 to 3 to each category. What level of education maps to a given integer is flexible, though I would probably go in order of increasing education and designate "other" as a 3 because it could conceivably be at the same level as or higher than a standard graduate degree. In any case, it would probably make sense to put "high-school or below" at the bottom, at 0.
 
 Alternatively, if there is a specific goal I have in mind for data analysis, I would consider spacing out the numbers more. High school could be a 0, a college degree could bring a customer up to a 3, and a graduate degree would be around a 5. While I am not sure where I would place "other", the point is that a larger number for rep_education could better predict something like earnings than consistently spaced categories. The approach would be the same as my first method, but the numbers would differ.
 
@@ -101,7 +101,7 @@ a. Plot a bar graph for the “Def_Ind” column and describe it.
 ```{r}
 barplot(table(refined_data$Def_ind), names.arg=c("Not Defaulted", "Defaulted"), xlab="Indicator of Default", ylab="Frequency", main="Accounts that Defaulted in the Past 18 Months", ylim=c(0,16000), col=c("green2","red2"))
 ```
-As the bar graph shows, approximately 15000 accounts did not default after being approved and opened with Bank XYZ in the past 18 months; around 1600 accounts did. Specifically, those 1600 accounts have not made payments in the last three months. While it is reassuring that most accounts have not defaulted, the bank should work to shrink the second bar as much as possible because defaulting can be quite costly for lenders.
+As the bar graph shows, approximately 15000 accounts did not default after being approved and opened with Bank XYZ in the past 18 months; around 1600 accounts did. Specifically, those 1600 accounts have not made payments in the last three months. While it is reassuring that most accounts have not defaulted, the bank should work to shrink the second bar as much as possible because defaulting can be quite costly for lenders. Also, dividing the historical number of defaulted accounts by the total number of accounts suggests that the bank should deny the approximately 9-10% of applicants who will be most likely to default.
 
 b. Plot a bar graph for the “rep_education" column and describe it. 
 ```{r}
