@@ -23,6 +23,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r}
+setwd("C:/Users/Peter/Documents/College Documents/DATA 180/Data 180 Peter Guma/DATA-180-PETER-GUMA")
 data <- read.csv("loan_default_data_set.csv")
 library(dplyr)
 library(ggplot2)
@@ -92,7 +93,7 @@ d. How would your convert the “rep_education” column into numerical data? Na
 
 To convert the rep_education column into numerical data, I could assign an integer ranging from 0 to 3 to each category. What level of education maps to a given integer is flexible, though I would probably go in order of increasing education and designate "other" as a 3 because it could conceivably be at the same level as or higher than a standard graduate degree. In any case, it would probably make sense to put "high-school or below" at the bottom, at 0.
 
-Alternatively, if there is a specific goal I have in mind for data analysis, I would consider spacing out the numbers more. High school could be a 0, a college degree could bring a customer up to a 3, and a graduate degree would be around a 5. While I am not sure where I would place "other", the point is that a larger number for rep_education could better predict something like earnings than consistently spaced categories. The approach would be the same as my first method, but the numbers would differ.
+Alternatively, I would consider spacing out the numbers more in case there is something specific I want to model that Icorrelates strongly with education level. High school could be a 0, a college degree could bring a customer up to a 3, and a graduate degree would be around a 5. While I am not sure where I would place "other", the point is that a larger number for rep_education could better predict something like earnings than consistently spaced categories. The approach would be the same as my first method, but the numbers would differ. The first method is probably better for exploratory data analysis.
 
 3. Data Visualization:
 For every graph in this section, remember to label your axes and to include a title. Feel free to play around with graphics and parameters. Have fun and explore!
@@ -111,7 +112,7 @@ As we see in the graph, approximately 10000 applicants have received a college e
 
 c. Plot a histogram of the “rep_income” variable.
 ```{r}
-
+hist(refined_data$rep_income, xlab="Annual Income", ylab="Income", main="Annual Income Self-Reported by Applicants", xlim=c(50000, 300000), col=c(19,26,31))
 ```
 
 d. Plot a boxplot of the “tot_balance” variable. Using the box plot report the five number summary of the variable? Are there any outliers for this variable?
