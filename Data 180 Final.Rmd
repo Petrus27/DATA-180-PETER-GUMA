@@ -117,5 +117,7 @@ hist(refined_data$rep_income, xlab="Annual Income", ylab="Income", main="Annual 
 
 d. Plot a boxplot of the “tot_balance” variable. Using the box plot report the five number summary of the variable? Are there any outliers for this variable?
 ```{r}
-
+boxplot(refined_data$tot_balance, horizontal=TRUE, xlab="Balance", main="Total Available Balance for all Credit Products", col="pink")
+# Add ylim=c(50000,175000) as an argument to zoom in
 ```
+According to the box plot, the minimum is 0, the first quartile is a bit over 90000, the median is 110000, the third quartile is 120000, and the maximum is 200000 (all approximations). There are quite a few outliers beyond the left and right whiskers, ranging from about 45000 to 200000 (save for however many customers have zero balance).
