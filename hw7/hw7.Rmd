@@ -10,6 +10,7 @@ output:
 editor_options: 
   chunk_output_type: console
 ---
+20/20. Good job Peter. This is very well done. 
 
 **Due date:** December 4 beginning of class.
 
@@ -34,7 +35,7 @@ Read the `news.csv` into R and create the object `news` using
 library(tidyverse)
 library(dplyr) # I added this so it would knit properly
 library(tm)
-setwd("C:/Users/Peter/Documents/College Documents/DATA 180/Data 180 Peter Guma/DATA-180-PETER-GUMA/hw7")
+#setwd("C:/Users/Peter/Documents/College Documents/DATA 180/Data 180 Peter Guma/DATA-180-PETER-GUMA/hw7")
 news<-read.csv("news.csv",header=T)
 ```
 
