@@ -1,0 +1,123 @@
+---
+title: "Data 180 Final"
+subtitle: "Data 180, Professor Kennedy"
+author: 
+  name: "Peter Guma"
+  email: "gumap@dickinson.edu"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output: 
+  html_document
+editor_options: 
+  chunk_output_type: console
+---
+40/40. Good job Peter. 
+```{r echo=FALSE}
+# Custom options for knitting
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  error = FALSE, 
+  fig.align = "center",
+  cache = FALSE
+) 
+```
+
+```{r}
+#setwd("C:/Users/Peter/Documents/College Documents/DATA 180/Data 180 Peter Guma/DATA-180-PETER-GUMA")
+data <- read.csv("loan_default_data_set.csv")
+library(dplyr)
+library(ggplot2)
+```
+
+1. Data wrangling:
+
+a. What is the dimension (shape) of the dataset?  How many rows and columns does the data set have?
+```{r}
+dim(data)
+```
+The dimension of the dataset is 21. It has 20000 rows and 21 columns.
+
+b. Report the column names of the data set.
+
+The column names are tot_balance, avg_bal_cards, credit_age, credit_age_good_account, credit_card_age, num_acc_30d_past_due_12_months, num_acc_30d_past_due_6_months, num_mortgage_currently_past_due, tot_amount_currently_past_due, num_inq_12_month, num_card_inq_24_month, num_card_12_month, num_auto_36_month, uti_open_card, pct_over_50_uti, uti_max_credit_line, pct_card_over_50_uti, ind_XYZ, rep_income, rep_education, and Def_ind.
+
+c. Which types of data are there in the dataset? Numeric, categorical, ordinal?
+
+The dataset consists primarily of quantitative (i.e., numeric) data, such as the information associated with the variable tot_balance. However, Def_Ind is a nominal variable: either the user did or did not default, and there is no natural ordering. While we may be tempted to label rep_education as an ordinal variable because there are increasing levels of education, the "other" category has no clear place in that system. I would argue that the dataset contains only numeric and nominal categorical data.
+
+d. Which columns contain missing values and how much (what percent) of those columns are missing?
+```{r}
+# is.na(data) #hidden for knit
+sum(is.na(data$pct_card_over_50_uti))/20000
+sum(is.na(data$rep_income))/20000
+```
+The only columns which contain missing values are pct_card_over_50_uti and rep_income. The former consists of $9.79\%$ missing values, while the latter column is $7.795\%$ missing.
+
+e. How do you think we should deal with missing values?
+
+One approach to dealing with missing values is to remove those rows altogether. The problem is that doing so means throwing away customer data, which is inadvisable. Removing the columns would be even worse, affecting every customer's record. Alternatively, we could replace every missing value with a placeholder like NA or 0, but that could impede data analysis. Removing the affected rows is probably our best bet in this scenario.
+
+f. With this data, would you fit a supervised or an unsupervised learning model? Why? 
+
+I think a supervised learning model would be better here because we have 20 predictor variables and a clear response variable that we want to predict, namely whether an applicant is likely to default on their account. While an unsupervised learning model could help us understand the structure of our multivariable dataset, going in with a specific goal in mind reduces its utility (that is not our primary goal). Understanding the relationship between any two or more variables is less important than whether a particular combination of variables predicts Def_Ind, which is what supervised learning could get us.
+
+g. For part 2 and 3 drop all rows of the data that contain missing values. Print the dimensions of the resulting data set that has no missing values.
+```{r}
+refined_data <- na.omit(data)
+dim(refined_data)
+```
+The new data set without missing values has dimensions 16653x21.
+
+2. Data summary statistics:
+
+a. Find the summary statistics of the data set. You can use the summary function from dplyr. 
+```{r}
+summary(refined_data)
+```
+
+b. Based on the mean, mode, and median, is “num_card_inq_24_month” bell shaped, left, right skewed? How about “tot_amount_currently_past_due”? “credit_age”? 
+
+num_card_inq_24_month and tot_amount_currently_past_due are both right skewed because their corresponding median is considerably lower than their mean, adjusting for the range. In contrast, credit_age is approximately bell shaped: the mean and the median are almost equal, that is, only about one month apart when the range is 550 months.
+
+c. Plot a histogram of the variables in b above. Do the shapes of the histograms confirm the skewness you found in b?
+```{r}
+hist(refined_data$num_card_inq_24_month, xlab="Number of Credit Card Inquiries (in months)", main="Number of Credit Card Inquiries in Last 24 Months", xlim=c(0,10), ylim=c(0,14000), col="salmon")
+
+hist(refined_data$tot_amount_currently_past_due, xlab="Total Amount Past Due", main="Total Amount Past Due for All Credit Accounts", xlim=c(0,12000), ylim=c(0,20000), col="orange")
+
+hist(refined_data$credit_age, xlab="Age of Oldest Credit Card (in months)", main="Age of Applicant's Oldest Credit Card", xlim=c(0,600), ylim=c(0,5000), col="red3")
+```
+Yes, the shapes of the histograms confirm the skewness I found in part b.
+
+d. How would your convert the “rep_education” column into numerical data? Name two ways. 
+
+To convert the rep_education column into numerical data, I could assign an integer ranging from 0 to 3 to each category. What level of education maps to a given integer is flexible, though I would probably go in order of increasing education and designate "other" as a 3 because it could conceivably be at the same level as or higher than a standard graduate degree. In any case, it would probably make sense to put "high-school or below" at the bottom, at 0.
+
+Alternatively, I would consider spacing out the numbers more in case there is something specific I want to model that correlates strongly with education level. High school could be a 0, a college degree could bring a customer up to a 3, and a graduate degree would be around a 5. While I am not sure where I would place "other", the point is that a larger number for rep_education could better predict something like earnings than evenly spaced categories. The approach would be the same as my first method, but the numbers would differ. Still, the first method is probably better for exploratory data analysis.
+
+3. Data Visualization:
+For every graph in this section, remember to label your axes and to include a title. Feel free to play around with graphics and parameters. Have fun and explore!
+
+a. Plot a bar graph for the “Def_Ind” column and describe it. 
+```{r}
+barplot(table(refined_data$Def_ind), names.arg=c("Not Defaulted", "Defaulted"), xlab="Indicator of Default", ylab="Frequency", main="Accounts that Defaulted in the Past 18 Months", ylim=c(0,16000), col=c("green2","red2"))
+```
+As the bar graph shows, approximately 15000 accounts did not default after being approved and opened with Bank XYZ in the past 18 months; around 1600 accounts did. Specifically, those 1600 accounts have not made payments in the last three months. While it is reassuring that most accounts have not defaulted, going forward, the bank should work to shrink the second bar as much as possible because defaulting can be quite costly for lenders. Also, dividing the historical number of defaulted accounts by the total number of accounts suggests that the bank should deny the approximately 9-10% of applicants who will be most likely to default.
+
+b. Plot a bar graph for the “rep_education" column and describe it. 
+```{r}
+barplot(sort(table(refined_data$rep_education), decreasing=TRUE), names.arg=c("College", "High School", "Graduate", "Other"), xlab="Education Level", ylab="Frequency", main="Education Level Self-Reported by Applicants", ylim=c(0,12000), col=c(2,3,4,5))
+```
+As we see in the graph, approximately 10000 applicants have received a college education, followed by 4000 with a high-school diploma or less, 2000 with a graduate degree, and a tiny percentage with another education level. Bank XYZ may want to tailor its marketing to high-schoolers and graduate degree holders to increase its market share of those demographics. However, this information on its own is not particularly helpful for deciding which new applicants to accept. While the majority of people did not default, and the majority of applicants reported their education level as "college", being in any particular demographic group should not qualify or disqualify any applicant without considering their other credentials.
+
+c. Plot a histogram of the “rep_income” variable.
+```{r}
+hist(refined_data$rep_income, xlab="Annual Income", ylab="Income", main="Annual Income Self-Reported by Applicants", xlim=c(50000, 300000), col=c(19,26,31))
+```
+
+d. Plot a boxplot of the “tot_balance” variable. Using the box plot report the five number summary of the variable? Are there any outliers for this variable?
+```{r}
+boxplot(refined_data$tot_balance, horizontal=TRUE, xlab="Balance", main="Total Available Balance for all Credit Products", col="pink")
+# Add ylim=c(50000,175000) as an argument to zoom in
+```
+According to the box plot, the minimum is around 45000, the first quartile is a bit over 90000, the median is 110000, the third quartile is 120000, and the maximum is around 170000 (all approximations). There are quite a few outliers beyond the left and right whiskers, ranging from about 25000 to 200000 (in addition to however many customers have zero available balance).
