@@ -10,7 +10,7 @@ output:
 editor_options: 
   chunk_output_type: console
 ---
-
+40/40. Good job Peter. 
 ```{r echo=FALSE}
 # Custom options for knitting
 knitr::opts_chunk$set(
@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r}
-setwd("C:/Users/Peter/Documents/College Documents/DATA 180/Data 180 Peter Guma/DATA-180-PETER-GUMA")
+#setwd("C:/Users/Peter/Documents/College Documents/DATA 180/Data 180 Peter Guma/DATA-180-PETER-GUMA")
 data <- read.csv("loan_default_data_set.csv")
 library(dplyr)
 library(ggplot2)
